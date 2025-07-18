@@ -1,5 +1,10 @@
 from datetime import datetime
 from typing import List, Optional
+from modules.backlog.factories import (
+    GameBacklogEntryFactory,
+    GameBacklogFactory,
+    GameMetadataFactory,
+)
 from modules.backlog.models import (
     BacklogPriority,
     BacklogStatus,
@@ -7,18 +12,26 @@ from modules.backlog.models import (
     GameBacklogEntry,
     GameMetadata,
     Genre,
+    InputGameBacklog,
+    InputGameBacklogEntry,
+    InputGameMetadata,
     Platform,
 )
-from modules.repositories.repositories import InMemoryRepository
+from modules.repositories.repositories import BaseRepository
 
 
 class GameBacklogService:
     """Service layer for managing game backlog operations."""
 
-    def __init__(self):
-        self.backlog_repo = InMemoryRepository[GameBacklog]()
-        self.entry_repo = InMemoryRepository[GameBacklogEntry]()
-        self.metadata_repo = InMemoryRepository[GameMetadata]()
+    def __init__(
+        self,
+        backlog_repo: BaseRepository[InputGameBacklog, GameBacklog],
+        entry_repo: BaseRepository[InputGameBacklogEntry, GameBacklogEntry],
+        metadata_repo: BaseRepository[InputGameMetadata, GameMetadata],
+    ):
+        self.backlog_repo = backlog_repo
+        self.entry_repo = entry_repo
+        self.metadata_repo = metadata_repo
 
     # ===============================
     # BACKLOG OPERATIONS
@@ -26,10 +39,7 @@ class GameBacklogService:
 
     def create_backlog(self, title: str) -> GameBacklog:
         """Create a new game backlog."""
-        backlog = GameBacklog(
-            id=0,  # Will be set by repository
-            created_at=datetime.utcnow(),
-            updated_at=datetime.utcnow(),
+        backlog = GameBacklogFactory.create(
             title=title,
         )
         return self.backlog_repo.create(backlog)
@@ -42,9 +52,9 @@ class GameBacklogService:
         """Get all backlogs."""
         return self.backlog_repo.list_all()
 
-    def update_backlog(self, backlog: GameBacklog) -> GameBacklog:
+    def update_backlog(self, backlog_id: int, backlog: InputGameBacklog) -> GameBacklog:
         """Update an existing backlog."""
-        return self.backlog_repo.update(backlog)
+        return self.backlog_repo.update(backlog_id, backlog)
 
     def delete_backlog(self, backlog_id: int) -> bool:
         """Delete a backlog and all its entries."""
@@ -54,7 +64,7 @@ class GameBacklogService:
 
         # Delete all entries in the backlog
         for entry_id in backlog.entries:
-            self.delete_entry(entry_id)
+            self.entry_repo.delete(entry_id)
 
         return self.backlog_repo.delete(backlog_id)
 
@@ -75,10 +85,7 @@ class GameBacklogService:
         platforms: List[Platform] = [],
     ) -> GameMetadata:
         """Create new game metadata."""
-        metadata = GameMetadata(
-            id=0,  # Will be set by repository
-            created_at=datetime.utcnow(),
-            updated_at=datetime.utcnow(),
+        metadata = GameMetadataFactory.create(
             title=title,
             description=description,
             cover_url=cover_url,
@@ -99,9 +106,11 @@ class GameBacklogService:
         """Get all game metadata."""
         return self.metadata_repo.list_all()
 
-    def update_game_metadata(self, metadata: GameMetadata) -> GameMetadata:
+    def update_game_metadata(
+        self, metadata_id: int, metadata: InputGameMetadata
+    ) -> GameMetadata:
         """Update existing game metadata."""
-        return self.metadata_repo.update(metadata)
+        return self.metadata_repo.update(metadata_id, metadata)
 
     def delete_game_metadata(self, metadata_id: int) -> bool:
         """Delete game metadata."""
@@ -115,7 +124,8 @@ class GameBacklogService:
         self,
         backlog_id: int,
         metadata_id: int,
-        priority: BacklogPriority = BacklogPriority.P2,
+        priority: BacklogPriority = BacklogPriority.P3,
+        status: BacklogStatus = BacklogStatus.INBOX,
     ) -> GameBacklogEntry:
         """Add a game to a backlog."""
         # Check if backlog exists
@@ -129,13 +139,10 @@ class GameBacklogService:
             raise ValueError(f"Game metadata with id {metadata_id} not found")
 
         # Create entry
-        entry = GameBacklogEntry(
-            id=0,  # Will be set by repository
-            created_at=datetime.utcnow(),
-            updated_at=datetime.utcnow(),
+        entry = GameBacklogEntryFactory.create(
             meta_data=metadata_id,
             priority=priority,
-            status=BacklogStatus.INBOX,
+            status=status,
             backlog=backlog_id,
         )
 
@@ -143,7 +150,10 @@ class GameBacklogService:
 
         # Update backlog with new entry
         backlog.entries.append(entry.id)
-        self.backlog_repo.update(backlog)
+        self.backlog_repo.update(
+            backlog_id,
+            GameBacklogFactory.create(title=backlog.title, entries=backlog.entries),
+        )
 
         return entry
 
@@ -173,8 +183,16 @@ class GameBacklogService:
         if not entry:
             return None
 
-        entry.status = status
-        return self.entry_repo.update(entry)
+        return self.entry_repo.update(
+            entry_id,
+            GameBacklogEntryFactory.create(
+                backlog=entry.backlog,
+                priority=entry.priority,
+                status=status,
+                meta_data=entry.meta_data,
+                sessions=entry.sessions,
+            ),
+        )
 
     def update_entry_priority(
         self, entry_id: int, priority: BacklogPriority
@@ -184,8 +202,16 @@ class GameBacklogService:
         if not entry:
             return None
 
-        entry.priority = priority
-        return self.entry_repo.update(entry)
+        return self.entry_repo.update(
+            entry_id,
+            GameBacklogEntryFactory.create(
+                backlog=entry.backlog,
+                priority=priority,
+                status=entry.status,
+                meta_data=entry.meta_data,
+                sessions=entry.sessions,
+            ),
+        )
 
     def delete_entry(self, entry_id: int) -> bool:
         """Delete an entry and all its sessions."""
@@ -197,6 +223,10 @@ class GameBacklogService:
         backlog = self.backlog_repo.get_by_id(entry.backlog)
         if backlog and entry_id in backlog.entries:
             backlog.entries.remove(entry_id)
-            self.backlog_repo.update(backlog)
+
+            self.backlog_repo.update(
+                backlog.id,
+                GameBacklogFactory.create(title=backlog.title, entries=backlog.entries),
+            )
 
         return self.entry_repo.delete(entry_id)

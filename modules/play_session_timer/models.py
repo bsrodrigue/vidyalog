@@ -10,7 +10,7 @@ class InputPlaySession(InputBaseModel):
     Tracks individual gaming sessions
     """
 
-    session_start: datetime
+    session_start: Optional[datetime] = datetime.now()
     session_end: Optional[datetime] = None
 
     @staticmethod

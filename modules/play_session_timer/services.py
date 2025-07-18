@@ -24,9 +24,7 @@ class PlaySessionTimerService:
     # ===============================
 
     def start_session(self) -> PlaySession:
-        session = self.session_repository.create(
-            PlaySessionFactory.create(session_start=datetime.now())
-        )
+        session = self.session_repository.create(PlaySessionFactory.create())
         return session
 
     def stop_session(self, session_id: int) -> PlaySession:

@@ -4,17 +4,10 @@ from typing import Optional
 
 
 @dataclass
-class BaseModel:
-    id: Optional[int]
-    created_at: datetime
-    updated_at: datetime
-
-
-@dataclass
 class InputBaseModel:
-    id: Optional[int]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    id: Optional[int] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
 
 
 @dataclass(frozen=True)
@@ -26,3 +19,7 @@ class RepositoryBaseModel:
     id: int
     created_at: datetime
     updated_at: datetime
+
+    @classmethod
+    def deserialize(cls, data: dict):
+        raise NotImplementedError("Deserialize not implemented")

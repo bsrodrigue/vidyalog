@@ -1,56 +1,26 @@
 from dataclasses import dataclass, field
-from enum import Enum
 from datetime import datetime
 from typing import Optional
-from modules.base.models import BaseModel
 
-
-class BacklogPriority(Enum):
-    P0 = 0
-    P1 = 1
-    P2 = 2
-    P3 = 3
-
-
-class BacklogStatus(Enum):
-    INBOX = "inbox"
-    CONSIDERING = "considering"
-    TO_BE_PLAYED = "to_be_played"
-    PLAYING = "playing"
-    ABANDONED = "abandoned"
-    FINISHED = "finished"
-    PAUSED = "paused"
-
-
-class Genre(Enum):
-    ACTION = "action"
-    ADVENTURE = "adventure"
-    RPG = "rpg"
-    STRATEGY = "strategy"
-    PUZZLE = "puzzle"
-    SIMULATION = "simulation"
-    SPORTS = "sports"
-    RACING = "racing"
-    FIGHTING = "fighting"
-    SHOOTER = "shooter"
-    MMO = "mmo"
-    MMORPG = "mmorpg"
-    INDIE = "indie"
-    HORROR = "horror"
-    PLATFORMER = "platformer"
-
-
-class Platform(Enum):
-    PC = "pc"
-    PLAYSTATION = "playstation"
-    XBOX = "xbox"
-    NINTENDO = "nintendo"
-    MOBILE = "mobile"
-    CONSOLE = "console"
+from modules.base.models import InputBaseModel, RepositoryBaseModel
+from modules.enums.enums import BacklogPriority, BacklogStatus, Genre, Platform
 
 
 @dataclass
-class GameMetadata(BaseModel):
+class InputGameMetadata(InputBaseModel):
+    title: Optional[str] = ""
+    description: str = ""
+    cover_url: str = ""
+    release_date: Optional[datetime] = None
+    developer: str = ""
+    publisher: str = ""
+    avg_completion_time: Optional[float] = None
+    genres: list[Genre] = field(default_factory=list)
+    platforms: list[Platform] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class GameMetadata(RepositoryBaseModel):
     """
     The Game Information can be provided manually or by scraping the web.
     """
@@ -67,7 +37,18 @@ class GameMetadata(BaseModel):
 
 
 @dataclass
-class GameBacklogEntry(BaseModel):
+class InputGameBacklogEntry(InputBaseModel):
+    meta_data: Optional[int] = None
+    priority: Optional[BacklogPriority] = None
+    status: Optional[BacklogStatus] = None
+
+    # Relations
+    backlog: Optional[int] = None  # GameBacklog
+    sessions: list[int] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class GameBacklogEntry(RepositoryBaseModel):
     """
     Main class for the game entry.
     """
@@ -82,7 +63,15 @@ class GameBacklogEntry(BaseModel):
 
 
 @dataclass
-class GameBacklog(BaseModel):
+class InputGameBacklog(InputBaseModel):
+    title: Optional[str] = ""
+
+    # Relations
+    entries: list[int] = field(default_factory=list)  # GameBacklogEntry
+
+
+@dataclass(frozen=True)
+class GameBacklog(RepositoryBaseModel):
     """
     Main class for the backlog.
     """
