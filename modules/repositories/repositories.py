@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from typing import Generic, Optional, TypeVar, List, cast, Type
 from datetime import datetime
 from dataclasses import asdict, replace
+from libs.json.serializer_deserializer import DataclassEncoder, DataclassSerializer
 from modules.base.models import InputBaseModel, RepositoryBaseModel
 from modules.enums.enums import BacklogPriority, BacklogStatus
 
@@ -123,36 +124,11 @@ class LocalStorageRepository(BaseRepository[T, R]):
     def _get_path(self, entity_id: int) -> Path:
         return self.base_path / f"{entity_id}.json"
 
-    def _serialize(self, obj: R) -> dict:
-        data = asdict(obj)
-        for key in ("created_at", "updated_at"):
-            if isinstance(data[key], datetime):
-                data[key] = data[key].isoformat()
+    def _serialize(self, obj: R) -> str:
+        return DataclassSerializer.serialize(obj)
 
-        # Convert enums to their names
-        for key, value in data.items():
-            if isinstance(value, Enum):
-                data[key] = value.name
-
-        return data
-
-    def _deserialize(self, data: dict) -> R:
-        for key in ("created_at", "updated_at"):
-            if key in data and isinstance(data[key], str):
-                data[key] = datetime.fromisoformat(data[key])
-
-        # Convert enum fields back from strings to enum instances
-        # You need to know which keys correspond to which enum type.
-        # Example assuming 'priority' and 'status' fields:
-
-        if "priority" in data:
-            data["priority"] = BacklogPriority[data["priority"]]
-
-        if "status" in data:
-            data["status"] = BacklogStatus[data["status"]]
-
-        print(data)
-        return self.repo_cls(**data)
+    def _deserialize(self, data_str: str) -> R:
+        return DataclassSerializer.deserialize(data_str, self.repo_cls)
 
     def create(self, entity: T) -> R:
         now = datetime.now()
@@ -163,9 +139,7 @@ class LocalStorageRepository(BaseRepository[T, R]):
             updated_at=now,
         )
         repo_entity = self.repo_cls(**asdict(entity))
-        self._get_path(repo_entity.id).write_text(
-            json.dumps(self._serialize(repo_entity), indent=2)
-        )
+        self._get_path(repo_entity.id).write_text(self._serialize(repo_entity))
         self._next_id += 1
         return repo_entity
 
@@ -173,13 +147,10 @@ class LocalStorageRepository(BaseRepository[T, R]):
         path = self._get_path(entity_id)
         if not path.exists():
             return None
-        return self._deserialize(json.loads(path.read_text()))
+        return self._deserialize(path.read_text())
 
     def list_all(self) -> List[R]:
-        return [
-            self._deserialize(json.loads(p.read_text()))
-            for p in self.base_path.glob("*.json")
-        ]
+        return [self._deserialize(p.read_text()) for p in self.base_path.glob("*.json")]
 
     def update(self, entity_id: int, entity: T) -> R:
         path = self._get_path(entity_id)
