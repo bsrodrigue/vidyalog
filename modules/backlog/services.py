@@ -48,6 +48,10 @@ class GameBacklogService:
         """Get a backlog by ID."""
         return self.backlog_repo.get_by_id(backlog_id)
 
+    def search_backlogs(self, query: str) -> List[GameBacklog]:
+        """Search for backlogs by title."""
+        return self.backlog_repo.find_by_attribute("title", query)
+
     def list_all_backlogs(self) -> List[GameBacklog]:
         """Get all backlogs."""
         return self.backlog_repo.list_all()

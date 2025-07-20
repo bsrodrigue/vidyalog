@@ -1,13 +1,13 @@
-from enum import Enum
 import json
 from pathlib import Path
 from abc import ABC, abstractmethod
 from typing import Generic, Optional, TypeVar, List, cast, Type
 from datetime import datetime
 from dataclasses import asdict, replace
-from libs.json.serializer_deserializer import DataclassEncoder, DataclassSerializer
+from libs.json.serializer_deserializer import DataclassSerializer
+from libs.log.base_logger import AbstractLogger
+from libs.log.console_logger import ConsoleLogger
 from modules.base.models import InputBaseModel, RepositoryBaseModel
-from modules.enums.enums import BacklogPriority, BacklogStatus
 
 # Define a generic type for entities that inherit from BaseModel
 T = TypeVar("T", bound=InputBaseModel)
@@ -29,12 +29,17 @@ class BaseRepository(ABC, Generic[T, R]):
 
     @abstractmethod
     def delete(self, entity_id: int) -> bool:
-        """Delete an existing entity and return nothing."""
+        """Delete an existing entity and return a boolean."""
         pass
 
     @abstractmethod
     def get_by_id(self, entity_id: int) -> Optional[R]:
         """Get an entity by id"""
+        pass
+
+    @abstractmethod
+    def find_by_attribute(self, attr_name: str, value) -> List[R]:
+        """Get an entity by attribute"""
         pass
 
     @abstractmethod
@@ -46,14 +51,13 @@ class BaseRepository(ABC, Generic[T, R]):
 class InMemoryRepository(BaseRepository[T, R]):
     """In-memory repository implementation for storing entities."""
 
-    def __init__(self):
+    def __init__(self, logger: AbstractLogger = ConsoleLogger("InMemoryRepository")):
         self._store: dict[int, R] = {}
         self._next_id: int = 1
+        self.logger = logger
 
     def create(self, entity: T) -> R:
         """Create a new entity with an assigned ID and timestamps."""
-        if not hasattr(entity, "created_at") or not hasattr(entity, "updated_at"):
-            raise ValueError("Entity must have created_at, and updated_at attributes")
 
         # Assign ID and timestamps
         entity.id = self._next_id
@@ -65,14 +69,17 @@ class InMemoryRepository(BaseRepository[T, R]):
         self._store[self._next_id] = _entity
         self._next_id += 1
 
+        self.logger.debug(f"Create Entity {entity.id} of type {T}")
         return _entity
 
     def get_by_id(self, entity_id: int) -> Optional[R]:
         """Get an entity by ID."""
+        self.logger.debug(f"Get Entity {entity_id} of type {T}")
         return cast(R, self._store.get(entity_id))
 
     def list_all(self) -> List[R]:
         """Return all entities in the store."""
+        self.logger.debug(f"Get all Entities of type {T}")
         return [cast(R, entity) for entity in self._store.values()]
 
     def update(self, entity_id, entity: T) -> R:
@@ -90,17 +97,20 @@ class InMemoryRepository(BaseRepository[T, R]):
 
         self._store[entity_id] = _entity
 
+        self.logger.debug(f"Update Entity {entity.id} of type {T}")
         return _entity
 
     def delete(self, entity_id: int) -> bool:
         """Delete an entity by ID."""
         if entity_id in self._store:
             del self._store[entity_id]
+            self.logger.debug(f"Delete Entity {entity_id} of type {T}")
             return True
         return False
 
     def find_by_attribute(self, attr_name: str, value) -> List[R]:
         """Find entities by a specific attribute value."""
+        self.logger.debug(f"Find all Entities by attribute {attr_name} of type {T}")
         return [
             cast(R, entity)
             for entity in self._store.values()
@@ -109,13 +119,20 @@ class InMemoryRepository(BaseRepository[T, R]):
 
 
 class LocalStorageRepository(BaseRepository[T, R]):
-    def __init__(self, input_cls: Type[T], repo_cls: Type[R], entity_name: str):
+    def __init__(
+        self,
+        input_cls: Type[T],
+        repo_cls: Type[R],
+        entity_name: str,
+        logger: AbstractLogger = ConsoleLogger("LocalStorageRepository"),
+    ):
         self.input_cls = input_cls
         self.repo_cls = repo_cls
-        self.entity_name = entity_name.lower() + "s"
+        self.entity_name = entity_name.lower()
         self.base_path = Path.home() / ".local/share/vidyalog" / self.entity_name
         self.base_path.mkdir(parents=True, exist_ok=True)
         self._next_id = self._compute_next_id()
+        self.logger = logger
 
     def _compute_next_id(self) -> int:
         ids = [int(p.stem) for p in self.base_path.glob("*.json") if p.stem.isdigit()]
@@ -141,6 +158,7 @@ class LocalStorageRepository(BaseRepository[T, R]):
         repo_entity = self.repo_cls(**asdict(entity))
         self._get_path(repo_entity.id).write_text(self._serialize(repo_entity))
         self._next_id += 1
+        self.logger.debug(f"Create Entity {entity.id} of type {T}")
         return repo_entity
 
     def get_by_id(self, entity_id: int) -> Optional[R]:

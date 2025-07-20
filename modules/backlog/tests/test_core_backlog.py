@@ -1,5 +1,6 @@
 import pytest
 from datetime import datetime
+from modules import backlog
 from modules.repositories.repositories import InMemoryRepository
 from modules.backlog.services import GameBacklogService
 from modules.backlog.models import (
@@ -108,6 +109,16 @@ def test_update_backlog_updates_existing_backlog(service):
 
     assert updated.title == "Updated Title"
     assert updated.entries == [1, 2, 3]
+
+
+# def test_search_backlog_by_title(service):
+#     service.create_backlog("First Backlog")
+#     service.create_backlog("Second Backlog")
+#     service.create_backlog("Third Backlog")
+#
+#     backlogs = service.search_backlogs("Second")
+#
+#     assert any(b.title == "Second Backlog" for b in backlogs)
 
 
 def test_delete_backlog_removes_backlog(service):
