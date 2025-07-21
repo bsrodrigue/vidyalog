@@ -1,6 +1,5 @@
 import typer
 
-from modules.backlog.factories import GameMetadataFactory
 from modules.play_session.services import (
     PlaySessionError,
     PlaySessionTimerService,
@@ -101,7 +100,7 @@ def update_metadata(id: int):
     description = input("Enter the new description: ") or metadata.description
 
     metadata = service.update_game_metadata(
-        metadata.id, GameMetadataFactory.create(title=title, description=description)
+        metadata.id, InputGameMetadata(title=title, description=description)
     )
 
     typer.echo(f"Metadata updated with ID {metadata.id}")

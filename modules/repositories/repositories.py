@@ -1,5 +1,4 @@
 import json
-import os
 from pathlib import Path
 from abc import ABC, abstractmethod
 from typing import Generic, Optional, TypeVar, List, cast, Type
@@ -53,11 +52,6 @@ class IRepository(ABC, Generic[T, R]):
         """Return a list of all entities."""
         raise NotImplementedError()
 
-    @abstractmethod
-    def clear_all(self) -> None:
-        """Clears all data"""
-        raise NotImplementedError()
-
 
 class InMemoryRepository(IRepository[T, R]):
     """In-memory repository implementation for storing entities. Good for testing."""
@@ -80,16 +74,13 @@ class InMemoryRepository(IRepository[T, R]):
         self._store[self._next_id] = _entity
         self._next_id += 1
 
-        self.logger.debug(f"Create Entity {entity.id} of type {T}")
         return _entity
 
     def get_by_id(self, entity_id: int) -> Optional[R]:
         """Get an entity by ID."""
-        self.logger.debug(f"Get Entity {entity_id} of type {T}")
         return cast(R, self._store.get(entity_id))
 
     def get_by_ids(self, entity_ids: List[int]) -> List[R]:
-        self.logger.debug(f"Get all Entities by IDs {entity_ids}")
         return [
             cast(R, entity)
             for entity in self._store.values()
@@ -98,7 +89,6 @@ class InMemoryRepository(IRepository[T, R]):
 
     def list_all(self) -> List[R]:
         """Return all entities in the store."""
-        self.logger.debug(f"Get all Entities of type {T}")
         return [cast(R, entity) for entity in self._store.values()]
 
     def update(self, entity_id, entity: T) -> R:
@@ -115,30 +105,22 @@ class InMemoryRepository(IRepository[T, R]):
         _entity = cast(R, entity)
 
         self._store[entity_id] = _entity
-
-        self.logger.debug(f"Update Entity {entity.id} of type {T}")
         return _entity
 
     def delete(self, entity_id: int) -> bool:
         """Delete an entity by ID."""
         if entity_id in self._store:
             del self._store[entity_id]
-            self.logger.debug(f"Delete Entity {entity_id} of type {T}")
             return True
         return False
 
     def find_by_attribute(self, attr_name: str, value) -> List[R]:
         """Find entities by a specific attribute value."""
-        self.logger.debug(f"Find all Entities by attribute {attr_name} of type {T}")
         return [
             cast(R, entity)
             for entity in self._store.values()
             if hasattr(entity, attr_name) and getattr(entity, attr_name) == value
         ]
-
-    def clear_all(self) -> None:
-        self._store = {}
-        self._next_id = 1
 
 
 class LocalStorageRepository(IRepository[T, R]):
@@ -181,7 +163,6 @@ class LocalStorageRepository(IRepository[T, R]):
         repo_entity = self.repo_cls(**asdict(entity))
         self._get_path(repo_entity.id).write_text(self._serialize(repo_entity))
         self._next_id += 1
-        self.logger.debug(f"Create Entity {entity.id} of type {T}")
         return repo_entity
 
     def get_by_id(self, entity_id: int) -> Optional[R]:
@@ -227,6 +208,3 @@ class LocalStorageRepository(IRepository[T, R]):
 
     def find_by_attribute(self, attr_name: str, value) -> List[R]:
         return [e for e in self.list_all() if getattr(e, attr_name, None) == value]
-
-    def clear_all(self) -> None:
-        os.rmdir(self.base_path)

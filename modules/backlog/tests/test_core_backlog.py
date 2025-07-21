@@ -1,33 +1,22 @@
 import pytest
 from datetime import datetime
-from modules import backlog
 from modules.repositories.repositories import InMemoryRepository
 from modules.backlog.services import GameBacklogService
 from modules.backlog.models import (
     BacklogPriority,
     BacklogStatus,
     Genre,
+    InputGameBacklog,
+    InputGameMetadata,
     Platform,
 )
 
 
 @pytest.fixture
-def backlog_repo():
-    return InMemoryRepository()
-
-
-@pytest.fixture
-def entry_repo():
-    return InMemoryRepository()
-
-
-@pytest.fixture
-def metadata_repo():
-    return InMemoryRepository()
-
-
-@pytest.fixture
-def service(backlog_repo, entry_repo, metadata_repo):
+def service():
+    backlog_repo = InMemoryRepository()
+    entry_repo = InMemoryRepository()
+    metadata_repo = InMemoryRepository()
     return GameBacklogService(backlog_repo, entry_repo, metadata_repo)
 
 
@@ -100,25 +89,12 @@ def test_list_all_backlogs_returns_empty_list_when_no_backlogs(service):
 def test_update_backlog_updates_existing_backlog(service):
     backlog = service.create_backlog("Original Title")
 
-    # Create a mock input object for update
-    from modules.backlog.factories import GameBacklogFactory
-
-    updated_input = GameBacklogFactory.create(title="Updated Title", entries=[1, 2, 3])
+    updated_input = InputGameBacklog(title="Updated Title", entries=[1, 2, 3])
 
     updated = service.update_backlog(backlog.id, updated_input)
 
     assert updated.title == "Updated Title"
     assert updated.entries == [1, 2, 3]
-
-
-# def test_search_backlog_by_title(service):
-#     service.create_backlog("First Backlog")
-#     service.create_backlog("Second Backlog")
-#     service.create_backlog("Third Backlog")
-#
-#     backlogs = service.search_backlogs("Second")
-#
-#     assert any(b.title == "Second Backlog" for b in backlogs)
 
 
 def test_delete_backlog_removes_backlog(service):
@@ -248,10 +224,7 @@ def test_list_all_game_metadata_returns_empty_list_when_no_metadata(service):
 def test_update_game_metadata_updates_existing_metadata(service):
     metadata = service.create_game_metadata("Original Game")
 
-    # Create a mock input object for update
-    from modules.backlog.factories import GameMetadataFactory
-
-    updated_input = GameMetadataFactory.create(
+    updated_input = InputGameMetadata(
         title="Updated Game",
         description="Updated description",
         developer="New Developer",

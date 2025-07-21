@@ -1,10 +1,5 @@
 from datetime import datetime
 from typing import List, Optional
-from modules.backlog.factories import (
-    GameBacklogEntryFactory,
-    GameBacklogFactory,
-    GameMetadataFactory,
-)
 from modules.backlog.models import (
     BacklogPriority,
     BacklogStatus,
@@ -37,11 +32,11 @@ class GameBacklogService:
     # BACKLOG OPERATIONS
     # ===============================
 
-    def create_backlog(self, title: str) -> GameBacklog:
-        """Create a new game backlog."""
-        backlog = GameBacklogFactory.create(
-            title=title,
-        )
+    def create_backlog(
+        self, title: str, entries: Optional[list[int]] = None
+    ) -> GameBacklog:
+        """Create a new game backlog with optional list of entries."""
+        backlog = InputGameBacklog(title=title, entries=entries or [])
         return self.backlog_repo.create(backlog)
 
     def get_backlog(self, backlog_id: int) -> Optional[GameBacklog]:
@@ -89,7 +84,7 @@ class GameBacklogService:
         platforms: List[Platform] = [],
     ) -> GameMetadata:
         """Create new game metadata."""
-        metadata = GameMetadataFactory.create(
+        metadata = InputGameMetadata(
             title=title,
             description=description,
             cover_url=cover_url,
@@ -138,29 +133,33 @@ class GameBacklogService:
         """Add a game to a backlog."""
         # Check if backlog exists
         backlog = self.backlog_repo.get_by_id(backlog_id)
+
         if not backlog:
             raise ValueError(f"Backlog with id {backlog_id} not found")
 
         # Check if metadata exists
         metadata = self.metadata_repo.get_by_id(metadata_id)
+
         if not metadata:
             raise ValueError(f"Game metadata with id {metadata_id} not found")
 
         # Create entry
-        entry = GameBacklogEntryFactory.create(
+        _entry = InputGameBacklogEntry(
             meta_data=metadata_id,
+            backlog=backlog_id,
             priority=priority,
             status=status,
-            backlog=backlog_id,
         )
 
-        entry = self.entry_repo.create(entry)
+        entry = self.entry_repo.create(_entry)
 
         # Update backlog with new entry
-        backlog.entries.append(entry.id)
+        entries = backlog.entries
+        entries.append(entry.id)
+
         self.backlog_repo.update(
             backlog_id,
-            GameBacklogFactory.create(title=backlog.title, entries=backlog.entries),
+            InputGameBacklog(title=backlog.title, entries=entries),
         )
 
         return entry
@@ -193,7 +192,7 @@ class GameBacklogService:
 
         return self.entry_repo.update(
             entry_id,
-            GameBacklogEntryFactory.create(
+            InputGameBacklogEntry(
                 backlog=entry.backlog,
                 priority=entry.priority,
                 status=status,
@@ -211,7 +210,7 @@ class GameBacklogService:
 
         return self.entry_repo.update(
             entry_id,
-            GameBacklogEntryFactory.create(
+            InputGameBacklogEntry(
                 backlog=entry.backlog,
                 priority=priority,
                 status=entry.status,
@@ -232,7 +231,7 @@ class GameBacklogService:
 
             self.backlog_repo.update(
                 backlog.id,
-                GameBacklogFactory.create(title=backlog.title, entries=backlog.entries),
+                InputGameBacklog(title=backlog.title, entries=backlog.entries),
             )
 
         return self.entry_repo.delete(entry_id)

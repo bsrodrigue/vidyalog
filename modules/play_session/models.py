@@ -13,10 +13,6 @@ class InputPlaySession(InputBaseModel):
     session_start: Optional[datetime] = datetime.now()
     session_end: Optional[datetime] = None
 
-    @staticmethod
-    def from_dict(args: dict):
-        return InputPlaySession(**args)
-
 
 class PlaySession(RepositoryBaseModel):
     """

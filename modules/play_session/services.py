@@ -1,7 +1,4 @@
 from datetime import datetime
-from modules.play_session.factories import (
-    PlaySessionFactory,
-)
 from modules.play_session.models import InputPlaySession, PlaySession
 from modules.repositories.repositories import IRepository
 
@@ -22,7 +19,7 @@ class PlaySessionTimerService:
     # ===============================
 
     def start_session(self) -> PlaySession:
-        session = self.session_repository.create(PlaySessionFactory.create())
+        session = self.session_repository.create(InputPlaySession())
         return session
 
     def stop_session(self, session_id: int) -> PlaySession:
