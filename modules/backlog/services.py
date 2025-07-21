@@ -17,7 +17,7 @@ from modules.backlog.models import (
     InputGameMetadata,
     Platform,
 )
-from modules.repositories.repositories import BaseRepository
+from modules.repositories.repositories import IRepository
 
 
 class GameBacklogService:
@@ -25,9 +25,9 @@ class GameBacklogService:
 
     def __init__(
         self,
-        backlog_repo: BaseRepository[InputGameBacklog, GameBacklog],
-        entry_repo: BaseRepository[InputGameBacklogEntry, GameBacklogEntry],
-        metadata_repo: BaseRepository[InputGameMetadata, GameMetadata],
+        backlog_repo: IRepository[InputGameBacklog, GameBacklog],
+        entry_repo: IRepository[InputGameBacklogEntry, GameBacklogEntry],
+        metadata_repo: IRepository[InputGameMetadata, GameMetadata],
     ):
         self.backlog_repo = backlog_repo
         self.entry_repo = entry_repo
@@ -105,6 +105,10 @@ class GameBacklogService:
     def get_game_metadata(self, metadata_id: int) -> Optional[GameMetadata]:
         """Get game metadata by ID."""
         return self.metadata_repo.get_by_id(metadata_id)
+
+    def get_many_game_metadata(self, metadata_ids: List[int]) -> List[GameMetadata]:
+        """Get game metadatas by ID."""
+        return self.metadata_repo.get_by_ids(metadata_ids)
 
     def list_all_game_metadata(self) -> List[GameMetadata]:
         """Get all game metadata."""
@@ -194,7 +198,6 @@ class GameBacklogService:
                 priority=entry.priority,
                 status=status,
                 meta_data=entry.meta_data,
-                sessions=entry.sessions,
             ),
         )
 
@@ -213,7 +216,6 @@ class GameBacklogService:
                 priority=priority,
                 status=entry.status,
                 meta_data=entry.meta_data,
-                sessions=entry.sessions,
             ),
         )
 

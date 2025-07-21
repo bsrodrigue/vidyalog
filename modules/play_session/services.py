@@ -1,9 +1,9 @@
 from datetime import datetime
-from modules.play_session_timer.factories import (
+from modules.play_session.factories import (
     PlaySessionFactory,
 )
-from modules.play_session_timer.models import InputPlaySession, PlaySession
-from modules.repositories.repositories import BaseRepository
+from modules.play_session.models import InputPlaySession, PlaySession
+from modules.repositories.repositories import IRepository
 
 
 class PlaySessionError(Exception):
@@ -14,9 +14,7 @@ class PlaySessionError(Exception):
 class PlaySessionTimerService:
     """Service layer for managing Play Session Timer."""
 
-    def __init__(
-        self, session_repository: BaseRepository[InputPlaySession, PlaySession]
-    ):
+    def __init__(self, session_repository: IRepository[InputPlaySession, PlaySession]):
         self.session_repository = session_repository
 
     # ===============================

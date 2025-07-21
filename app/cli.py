@@ -1,10 +1,11 @@
 import typer
 
-from modules.play_session_timer.services import (
+from modules.backlog.factories import GameMetadataFactory
+from modules.play_session.services import (
     PlaySessionError,
     PlaySessionTimerService,
 )
-from modules.play_session_timer.models import InputPlaySession, PlaySession
+from modules.play_session.models import InputPlaySession, PlaySession
 from modules.backlog.services import GameBacklogService
 from modules.repositories.repositories import LocalStorageRepository
 from modules.backlog.models import (
@@ -42,7 +43,7 @@ play_session_service = PlaySessionTimerService(session_repo)
 @app.command("create-backlog")
 def create_backlog(title: str):
     backlog = service.create_backlog(title)
-    typer.echo(f"Backlog created with ID {backlog.id}")
+    typer.echo(f"Backlog {backlog.title} created with ID {backlog.id}")
 
 
 @app.command("list-backlogs")
@@ -59,9 +60,17 @@ def list_backlogs():
 def show_backlog(id: int):
     backlog = service.get_backlog(id)
     if backlog:
-        typer.echo(
-            f"Backlog ID: {backlog.id}\nTitle: {backlog.title}\nEntries: {backlog.entries}"
-        )
+        entries = service.list_entries_in_backlog(id)
+        typer.echo(f"Backlog ID: {backlog.id}\nTitle: {backlog.title}\n")
+        typer.echo("Entries:")
+
+        for e in entries:
+            meta_data = service.metadata_repo.get_by_id(e.meta_data)
+            if meta_data is None:
+                continue
+            typer.echo(
+                f"{e.id} - {meta_data.title} | {e.status.value.capitalize()} | {meta_data.platforms} | {meta_data.avg_completion_time}"
+            )
     else:
         typer.echo("Backlog not found.")
 
@@ -79,6 +88,23 @@ def delete_backlog(id: int):
 def create_metadata(title: str):
     metadata = service.create_game_metadata(title=title)
     typer.echo(f"Metadata created with ID {metadata.id}")
+
+
+@app.command("update-metadata")
+def update_metadata(id: int):
+    metadata = service.metadata_repo.get_by_id(id)
+    if metadata is None:
+        typer.echo("Metadata not found.")
+        return
+
+    title = input("Enter the new title: ") or metadata.title
+    description = input("Enter the new description: ") or metadata.description
+
+    metadata = service.update_game_metadata(
+        metadata.id, GameMetadataFactory.create(title=title, description=description)
+    )
+
+    typer.echo(f"Metadata updated with ID {metadata.id}")
 
 
 @app.command("list-metadata")
@@ -115,7 +141,7 @@ def delete_metadata(id: int):
 def add_entry(
     backlog_id: int,
     metadata_id: int,
-    priority: BacklogPriority = BacklogPriority.P2,
+    priority: BacklogPriority = BacklogPriority.P3,
     status: BacklogStatus = BacklogStatus.INBOX,
 ):
     try:

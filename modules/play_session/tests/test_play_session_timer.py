@@ -1,7 +1,7 @@
 import pytest
 from datetime import datetime
 from modules.repositories.repositories import InMemoryRepository
-from modules.play_session_timer.services import (
+from modules.play_session.services import (
     PlaySessionTimerService,
     PlaySessionError,
 )

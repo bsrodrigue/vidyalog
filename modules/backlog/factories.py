@@ -6,8 +6,8 @@ from modules.backlog.models import (
     Genre,
     Platform,
     BacklogPriority,
-    BacklogStatus,
 )
+from modules.enums.enums import BacklogStatus
 
 
 class GameMetadataFactory:
@@ -67,7 +67,6 @@ class GameBacklogEntryFactory:
         priority: BacklogPriority | None = None,
         status: BacklogStatus | None = None,
         backlog: int | None = None,
-        sessions: list[int] = [],
     ) -> InputGameBacklogEntry:
         return InputGameBacklogEntry(
             id=None,
@@ -77,5 +76,4 @@ class GameBacklogEntryFactory:
             priority=priority,
             status=status,
             backlog=backlog,
-            sessions=sessions or [],
         )

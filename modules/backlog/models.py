@@ -44,7 +44,6 @@ class InputGameBacklogEntry(InputBaseModel):
 
     # Relations
     backlog: Optional[int] = None  # GameBacklog
-    sessions: list[int] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -59,7 +58,6 @@ class GameBacklogEntry(RepositoryBaseModel):
 
     # Relations
     backlog: int  # GameBacklog
-    sessions: list[int] = field(default_factory=list)
 
 
 @dataclass

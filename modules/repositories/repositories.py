@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 from abc import ABC, abstractmethod
 from typing import Generic, Optional, TypeVar, List, cast, Type
@@ -14,42 +15,52 @@ T = TypeVar("T", bound=InputBaseModel)
 R = TypeVar("R", bound=RepositoryBaseModel)
 
 
-class BaseRepository(ABC, Generic[T, R]):
+class IRepository(ABC, Generic[T, R]):
     """Abstract base class for repositories handling CRUD operations."""
 
     @abstractmethod
     def create(self, entity: T) -> R:
         """Create a new entity and return it."""
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def update(self, entity_id: int, entity: T) -> R:
         """Update an existing entity and return it."""
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def delete(self, entity_id: int) -> bool:
         """Delete an existing entity and return a boolean."""
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def get_by_id(self, entity_id: int) -> Optional[R]:
         """Get an entity by id"""
-        pass
+        raise NotImplementedError()
+
+    @abstractmethod
+    def get_by_ids(self, entity_ids: List[int]) -> List[R]:
+        """Get multiple entities by id"""
+        raise NotImplementedError()
 
     @abstractmethod
     def find_by_attribute(self, attr_name: str, value) -> List[R]:
         """Get an entity by attribute"""
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def list_all(self) -> List[R]:
         """Return a list of all entities."""
-        pass
+        raise NotImplementedError()
+
+    @abstractmethod
+    def clear_all(self) -> None:
+        """Clears all data"""
+        raise NotImplementedError()
 
 
-class InMemoryRepository(BaseRepository[T, R]):
-    """In-memory repository implementation for storing entities."""
+class InMemoryRepository(IRepository[T, R]):
+    """In-memory repository implementation for storing entities. Good for testing."""
 
     def __init__(self, logger: AbstractLogger = ConsoleLogger("InMemoryRepository")):
         self._store: dict[int, R] = {}
@@ -76,6 +87,14 @@ class InMemoryRepository(BaseRepository[T, R]):
         """Get an entity by ID."""
         self.logger.debug(f"Get Entity {entity_id} of type {T}")
         return cast(R, self._store.get(entity_id))
+
+    def get_by_ids(self, entity_ids: List[int]) -> List[R]:
+        self.logger.debug(f"Get all Entities by IDs {entity_ids}")
+        return [
+            cast(R, entity)
+            for entity in self._store.values()
+            if entity.id in entity_ids
+        ]
 
     def list_all(self) -> List[R]:
         """Return all entities in the store."""
@@ -117,8 +136,12 @@ class InMemoryRepository(BaseRepository[T, R]):
             if hasattr(entity, attr_name) and getattr(entity, attr_name) == value
         ]
 
+    def clear_all(self) -> None:
+        self._store = {}
+        self._next_id = 1
 
-class LocalStorageRepository(BaseRepository[T, R]):
+
+class LocalStorageRepository(IRepository[T, R]):
     def __init__(
         self,
         input_cls: Type[T],
@@ -167,6 +190,13 @@ class LocalStorageRepository(BaseRepository[T, R]):
             return None
         return self._deserialize(path.read_text())
 
+    def get_by_ids(self, entity_ids: List[int]) -> List[R]:
+        return [
+            entity
+            for entity in (self.get_by_id(eid) for eid in entity_ids)
+            if entity is not None
+        ]
+
     def list_all(self) -> List[R]:
         return [self._deserialize(p.read_text()) for p in self.base_path.glob("*.json")]
 
@@ -185,7 +215,7 @@ class LocalStorageRepository(BaseRepository[T, R]):
             updated_at=datetime.now(),
         )
         repo_entity = self.repo_cls(**asdict(updated_entity))
-        path.write_text(json.dumps(self._serialize(repo_entity), indent=2))
+        path.write_text(self._serialize(repo_entity))
         return repo_entity
 
     def delete(self, entity_id: int) -> bool:
@@ -197,3 +227,6 @@ class LocalStorageRepository(BaseRepository[T, R]):
 
     def find_by_attribute(self, attr_name: str, value) -> List[R]:
         return [e for e in self.list_all() if getattr(e, attr_name, None) == value]
+
+    def clear_all(self) -> None:
+        os.rmdir(self.base_path)

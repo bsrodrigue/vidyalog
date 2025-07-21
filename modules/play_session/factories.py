@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional
-from modules.play_session_timer.models import InputPlaySession
+from modules.play_session.models import InputPlaySession
 
 
 class PlaySessionFactory:

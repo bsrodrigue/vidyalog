@@ -19,7 +19,3 @@ class RepositoryBaseModel:
     id: int
     created_at: datetime
     updated_at: datetime
-
-    @classmethod
-    def deserialize(cls, data: dict):
-        raise NotImplementedError("Deserialize not implemented")

@@ -2,10 +2,10 @@ import json
 import dataclasses
 from enum import Enum
 from datetime import datetime
-from typing import Type, TypeVar
+from typing import Optional, Type, TypeVar
 import dacite
 
-from modules.enums.enums import BacklogPriority
+from modules.enums.enums import BacklogPriority, BacklogStatus
 
 T = TypeVar("T")
 
@@ -14,12 +14,12 @@ def enum_by_name(enum_cls):
     return lambda x: enum_cls[x]
 
 
-def int_hook(value):
+def int_hook(value) -> Optional[int]:
     if isinstance(value, str):
         try:
             return int(value)
         except ValueError:
-            return value
+            return None
     return value
 
 
@@ -44,15 +44,16 @@ class DataclassSerializer:
         if not dataclasses.is_dataclass(cls):
             raise ValueError(f"{cls.__name__} is not a dataclass")
 
-        raw = json.loads(json_str)
+        data_dict = json.loads(json_str)
         return dacite.from_dict(
             data_class=cls,
-            data=raw,
+            data=data_dict,
             config=dacite.Config(
                 type_hooks={
-                    int: int_hook,
+                    # int: int_hook,
                     datetime: datetime.fromisoformat,
                     BacklogPriority: enum_by_name(BacklogPriority),
+                    BacklogStatus: enum_by_name(BacklogStatus),
                 },
                 cast=[Enum],
             ),
