@@ -30,3 +30,40 @@
 [2025-07-24T20:04:51] [InMemoryRepository] [DEBUG] Get all entities
 [2025-07-24T20:04:51] [InMemoryRepository] [DEBUG] Get entity with id: 1
 [2025-07-24T20:04:51] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:10:01] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:10:01] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:10:01] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:20] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:17:20] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:20] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:24] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:17:24] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:24] [InMemoryRepository] [DEBUG] Updated entity: 1: Started 24/07/2025 20:04:47 | Ended: 24/07/2025 20:17:24 | Time Played: 00:12:36
+[2025-07-24T20:17:27] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:17:27] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:27] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:39] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:17:39] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:39] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:39] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 20, 17, 39, 181278), 'updated_at': datetime.datetime(2025, 7, 24, 20, 17, 39, 181278)}
+[2025-07-24T20:17:39] [InMemoryRepository] [DEBUG] Created entity: 2: Started 24/07/2025 20:17:39 | In Progress | Time Played: 00:00:00
+[2025-07-24T20:17:41] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:17:41] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:41] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:41] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:41] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:48] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:17:48] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:48] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:48] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:48] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:50] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:17:50] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:50] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:50] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:50] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:51] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T20:17:51] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:51] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:51] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T20:17:51] [InMemoryRepository] [DEBUG] Get entity with id: 1
