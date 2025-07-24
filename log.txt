@@ -1,342 +1,62 @@
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 201938), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 201938)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 201938) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 201938) deleted_at=None title='My Backlog' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 201938) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 201938) deleted_at=None title='My Backlog' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 201938) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 201938) deleted_at=None title='My Backlog' entries=[] found
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 203362), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 203362)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362) deleted_at=None title='First backlog' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362) deleted_at=None title='First backlog' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 203533), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 203533)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533) deleted_at=None title='Second backlog' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=2 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533) deleted_at=None title='Second backlog' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 203676), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 203676)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=3 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203676) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203676) deleted_at=None title='Third' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=3 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203676) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203676) deleted_at=None title='Third' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [GameBacklog(id=1, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533), deleted_at=None, title='Second backlog', entries=[])]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlogs found: result=[GameBacklog(id=1, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533), deleted_at=None, title='Second backlog', entries=[])] total=2 has_next=False next_cursor=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get all entities
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203362), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203533), deleted_at=None, title='Second backlog', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203676), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 203676), deleted_at=None, title='Third', entries=[])]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 204799), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 204799)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 204799) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 204799) deleted_at=None title='Old Title' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 204799) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 204799) deleted_at=None title='Old Title' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 204799) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 204947) deleted_at=None title='New Title' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 204799) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 204947) deleted_at=None title='New Title' entries=[] updated successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 205685), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 205685)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205685) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205685) deleted_at=None title='Game' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 205803), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 205803)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205803) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205803) deleted_at=None title='Backlog To Delete' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205803) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205803) deleted_at=None title='Backlog To Delete' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 206018), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 206018)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206018) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206018) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205803) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206128) deleted_at=None title='Backlog To Delete' entries=[1]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 206256), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 206256)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206256) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206256) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205803) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206355) deleted_at=None title='Backlog To Delete' entries=[1, 2]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205803) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206355) deleted_at=None title='Backlog To Delete' entries=[1, 2] found
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Successful deleted entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206018) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206018) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Successful deleted entity: id=2 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206256) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206256) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Successful deleted entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 205803) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 206355) deleted_at=None title='Backlog To Delete' entries=[1, 2]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog 1 not found
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 2
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 207572), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 207572)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 207572) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 207572) deleted_at=None title='Game X' description='' cover_url='' release_date=None developer='Dev' publisher='Pub' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 208373), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 208373)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 208373) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 208373) deleted_at=None title='G1' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 208491), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 208491)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 208491) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 208491) deleted_at=None title='G2' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get all entities with ids: [1, 2]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 209249), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 209249)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 209249) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 209249) deleted_at=None title='A' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 209365), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 209365)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 209365) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 209365) deleted_at=None title='B' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get all entities
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 210097), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 210097)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 210097) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 210097) deleted_at=None title='Old' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 210097) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 210205) deleted_at=None title='New' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 210895), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 210895)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 210895) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 210895) deleted_at=None title='To Delete' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Successful deleted entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 210895) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 210895) deleted_at=None title='To Delete' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 211688), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 211688)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 211688) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 211688) deleted_at=None title='Backlog' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 211688) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 211688) deleted_at=None title='Backlog' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 211852), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 211852)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 211852) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 211852) deleted_at=None title='Game 1' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 212019), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 212019)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 212019) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 212019) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 211688) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 212112) deleted_at=None title='Backlog' entries=[1]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 211688) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 212112) deleted_at=None title='Backlog' entries=[1] found
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 212937), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 212937)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 212937) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 212937) deleted_at=None title='Game 1' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 999
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 213828), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 213828)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 213828) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 213828) deleted_at=None title='Backlog' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 213828) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 213828) deleted_at=None title='Backlog' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 999
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 214697), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 214697)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 214697) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 214697) deleted_at=None title='Backlog' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 214697) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 214697) deleted_at=None title='Backlog' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 214863), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 214863)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 214863) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 214863) deleted_at=None title='Game' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 215790), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 215790)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 215790) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 215790) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 216697), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 216697)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 216697) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 216697) deleted_at=None title='BL' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 216697) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 216697) deleted_at=None title='BL' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 216873), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 216873)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 216873) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 216873) deleted_at=None title='G' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 217042), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 217042)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 217042) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 217042) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 216697) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 217143) deleted_at=None title='BL' entries=[1]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 217264), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 217264)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 217264) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 217264) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 216697) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 217367) deleted_at=None title='BL' entries=[1, 2]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get all entities with ids: [1, 2]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 999
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 218280), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 218280)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218280) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218280) deleted_at=None title='G' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 218422), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 218422)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218422) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218422) deleted_at=None title='BL' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218422) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218422) deleted_at=None title='BL' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 218604), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 218604)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218604) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218604) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218422) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218722) deleted_at=None title='BL' entries=[1]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218604) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218825) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.PLAYING: 'playing'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218604) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 218937) deleted_at=None meta_data=1 priority=<BacklogPriority.P1: 1> status=<BacklogStatus.PLAYING: 'playing'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 999
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 999
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 220439), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 220439)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220439) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220439) deleted_at=None title='BL' entries=[]
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220439) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220439) deleted_at=None title='BL' entries=[] created successfully
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 220725), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 220725)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220725) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220725) deleted_at=None title='G' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 220939), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 220939)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220939) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220939) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220439) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 221058) deleted_at=None title='BL' entries=[1]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220439) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 221058) deleted_at=None title='BL' entries=[1] found
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220439) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 221268) deleted_at=None title='BL' entries=[]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Successful deleted entity: id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220939) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220939) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 220439) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 221268) deleted_at=None title='BL' entries=[] found
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 223104), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 223104)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='Test Entity' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 223104) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 223104) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 224020), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 224020)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='Test Entity' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 224020) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 224020) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 9999
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 225204), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 225204)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='A' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 225204) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 225204) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 225293), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 225293)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 name='B' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 225293) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 225293) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get all entities
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 225902), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 225902)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='Old' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 225902) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 225902) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Updated entity: id=1 name='New' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 225902) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 225985) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [ERROR] Entity with id 1234 not found.
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 227072), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 227072)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='To delete' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227072) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227072) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Enable soft deletion
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Successful deleted entity: id=1 name='To delete' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227072) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227072) deleted_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227179)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 227748), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 227748)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='To delete hard' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227748) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227748) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Successful deleted entity: id=1 name='To delete hard' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227748) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 227748) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Get entity with id: 1
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Cannot delete: entity with id 9999 not found.
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 228941), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 228941)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='foo' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 228941) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 228941) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 229118), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 229118)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 name='foo' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 229118) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 229118) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 229194), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 229194)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=3 name='bar' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 229194) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 229194) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Check existence of entities with filters: {'name': 'foo'}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Check existence of entities with filters: {'name': 'baz'}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Count entities with filters: {'name': 'foo'}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Count entities with filters: {'name': 'baz'}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 230048), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 230048)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='a' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230048) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230048) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 230143), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 230143)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 name='b' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230143) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230143) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 230210), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 230210)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=3 name='c' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230210) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230210) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(id=1, name='a', created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230048), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230048), deleted_at=None), DummyModel(id=2, name='b', created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230143), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230143), deleted_at=None)]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 230913), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 230913)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=1 name='A' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230913) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230913) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 231002), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 231002)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=2 name='B' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231002) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231002) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 231070), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 231070)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=3 name='C' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231070) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231070) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 231135), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 231135)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=4 name='D' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231135) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231135) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 231195), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 231195)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: id=5 name='E' created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231195) updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231195) deleted_at=None
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(id=1, name='A', created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230913), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 230913), deleted_at=None), DummyModel(id=2, name='B', created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231002), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231002), deleted_at=None)]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(id=3, name='C', created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231070), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231070), deleted_at=None), DummyModel(id=4, name='D', created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231135), updated_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 231135), deleted_at=None)]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232031), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232031)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 232031)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232118), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232118)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 232118)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232187), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232187)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 232187)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232244), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232244)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 232244)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232297), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 232297)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 232297)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Alpha', score=10, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 232031))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233015), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233015)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233015)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233106), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233106)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233106)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233165), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233165)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233165)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233219), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233219)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233219)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233271), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233271)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233271)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Alpha', score=10, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233015)), DummyModel(name='Bravo', score=20, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233106))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233971), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 233971)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233971)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234052), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234052)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 234052)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234112), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234112)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 234112)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234165), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234165)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 234165)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234218), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234218)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 234218)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Alpha', score=10, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 233971)), DummyModel(name='Bravo', score=20, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 234052)), DummyModel(name='Charlie', score=30, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 234112))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234951), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 234951)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 234951)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235037), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235037)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 235037)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235097), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235097)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 235097)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235152), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235152)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 235152)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235205), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235205)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 235205)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='delta', score=40, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 235152)), DummyModel(name='Echo', score=50, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 235205))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235972), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 235972)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 235972)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 236057), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 236057)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 236057)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 236142), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 236142)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 236142)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 236210), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 236210)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 236210)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 236282), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 236282)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 236282)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Charlie', score=30, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 236142)), DummyModel(name='delta', score=40, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 236210)), DummyModel(name='Echo', score=50, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 236282))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237042), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237042)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 237042)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237122), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237122)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 237122)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237191), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237191)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 237191)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237244), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237244)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 237244)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237295), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237295)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 237295)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Alpha', score=10, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 237042))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237981), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 237981)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 237981)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 238066), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 238066)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 238066)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 238123), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 238123)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 238123)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 238182), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 238182)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 238182)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 238234), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 238234)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 238234)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='delta', score=40, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 238182))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239027), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239027)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 239027)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239106), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239106)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 239106)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239174), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239174)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 239174)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239230), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239230)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 239230)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239280), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239280)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 239280)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Bravo', score=20, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 239106))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239953), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 239953)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 239953)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240037), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240037)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240037)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240094), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240094)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240094)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240147), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240147)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240147)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240198), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240198)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240198)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Alpha', score=10, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 239953)), DummyModel(name='Bravo', score=20, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240037)), DummyModel(name='Charlie', score=30, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240094)), DummyModel(name='delta', score=40, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240147))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240900), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240900)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240900)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240981), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 240981)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 240981)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241038), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241038)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 241038)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241090), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241090)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 241090)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241140), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241140)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 241140)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Charlie', score=30, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 241038)), DummyModel(name='delta', score=40, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 241090))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241817), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241817)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 241817)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241901), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241901)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 241901)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241959), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 241959)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 241959)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 242011), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 242011)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 242011)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 242070), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 242070)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 242070)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: []
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 242810), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 242810)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Zulu' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 242810)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243432), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243432)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Alpha' score=10 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 243432)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243522), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243522)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Bravo' score=20 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 243522)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 3, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243582), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243582)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Charlie' score=30 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 243582)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 4, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243642), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243642)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='delta' score=40 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 243642)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 5, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243700), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 243700)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Echo' score=50 created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 243700)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Alpha', score=10, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 243432)), DummyModel(name='Echo', score=50, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 243700))]
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 244476), 'updated_at': datetime.datetime(2025, 7, 24, 14, 38, 38, 244476)}
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Created entity: name='Foxtrot' score=None created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 244476)
-[2025-07-24T14:38:38] [InMemoryRepository] [DEBUG] Filtered entities: [DummyModel(name='Foxtrot', score=None, created_at=datetime.datetime(2025, 7, 24, 14, 38, 38, 244476))]
+[2025-07-24T17:48:09] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:48:09] [GameBacklogService] [INFO] All backlogs found: []
+[2025-07-24T17:48:09] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:48:09] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:48:30] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 17, 48, 30, 657357), 'updated_at': datetime.datetime(2025, 7, 24, 17, 48, 30, 657357)}
+[2025-07-24T17:48:30] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) updated_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) deleted_at=None title='Awesome Games To Play' entries=[]
+[2025-07-24T17:48:30] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) updated_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) deleted_at=None title='Awesome Games To Play' entries=[] created successfully
+[2025-07-24T17:48:32] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:48:32] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357), updated_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357), deleted_at=None, title='Awesome Games To Play', entries=[])]
+[2025-07-24T17:48:32] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:48:32] [InMemoryRepository] [DEBUG] Get all entities with ids: []
+[2025-07-24T17:48:34] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:48:34] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) updated_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) deleted_at=None title='Awesome Games To Play' entries=[] found
+[2025-07-24T17:48:34] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:48:34] [InMemoryRepository] [DEBUG] Get all entities with ids: []
+[2025-07-24T17:48:54] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 17, 48, 54, 228203), 'updated_at': datetime.datetime(2025, 7, 24, 17, 48, 54, 228203)}
+[2025-07-24T17:48:54] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 48, 54, 228203) updated_at=datetime.datetime(2025, 7, 24, 17, 48, 54, 228203) deleted_at=None title='Cross Code' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=0.0 genres=[] platforms=[]
+[2025-07-24T17:49:01] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 48, 54, 228203) updated_at=datetime.datetime(2025, 7, 24, 17, 49, 1, 741070) deleted_at=None title='Cross Code' description='' cover_url='' release_date=None developer='' publisher='' avg_completion_time=35.0 genres=[] platforms=[]
+[2025-07-24T17:49:03] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:49:06] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:49:33] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:49:33] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:49:33] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) updated_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) deleted_at=None title='Awesome Games To Play' entries=[] found
+[2025-07-24T17:49:33] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:49:33] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:49:33] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 17, 49, 33, 407709), 'updated_at': datetime.datetime(2025, 7, 24, 17, 49, 33, 407709)}
+[2025-07-24T17:49:33] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 49, 33, 407709) updated_at=datetime.datetime(2025, 7, 24, 17, 49, 33, 407709) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.INBOX: 'inbox'> backlog=1
+[2025-07-24T17:49:33] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357) updated_at=datetime.datetime(2025, 7, 24, 17, 49, 33, 407816) deleted_at=None title='Awesome Games To Play' entries=[1]
+[2025-07-24T17:49:48] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:49:48] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357), updated_at=datetime.datetime(2025, 7, 24, 17, 49, 33, 407816), deleted_at=None, title='Awesome Games To Play', entries=[1])]
+[2025-07-24T17:49:48] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:49:48] [InMemoryRepository] [DEBUG] Get all entities with ids: [1]
+[2025-07-24T17:49:48] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:49:55] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 1, 'created_at': datetime.datetime(2025, 7, 24, 17, 49, 55, 669431), 'updated_at': datetime.datetime(2025, 7, 24, 17, 49, 55, 669431)}
+[2025-07-24T17:49:55] [InMemoryRepository] [DEBUG] Created entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 49, 55, 669431) updated_at=datetime.datetime(2025, 7, 24, 17, 49, 55, 669431) deleted_at=None session_start=datetime.datetime(2025, 7, 24, 17, 49, 55, 669403) session_end=None backlog_entry=0
+[2025-07-24T17:49:57] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:50:01] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:50:01] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:01] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 49, 55, 669431) updated_at=datetime.datetime(2025, 7, 24, 17, 50, 1, 598760) deleted_at=None session_start=datetime.datetime(2025, 7, 24, 17, 49, 55, 669403) session_end=datetime.datetime(2025, 7, 24, 17, 50, 1, 598715) backlog_entry=0
+[2025-07-24T17:50:02] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:50:05] [InMemoryRepository] [DEBUG] Assigning id and timestamps: {'id': 2, 'created_at': datetime.datetime(2025, 7, 24, 17, 50, 5, 131069), 'updated_at': datetime.datetime(2025, 7, 24, 17, 50, 5, 131069)}
+[2025-07-24T17:50:05] [InMemoryRepository] [DEBUG] Created entity: id=2 created_at=datetime.datetime(2025, 7, 24, 17, 50, 5, 131069) updated_at=datetime.datetime(2025, 7, 24, 17, 50, 5, 131069) deleted_at=None session_start=datetime.datetime(2025, 7, 24, 17, 50, 5, 131044) session_end=None backlog_entry=0
+[2025-07-24T17:50:06] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:50:08] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:50:08] [InMemoryRepository] [DEBUG] Get entity with id: 2
+[2025-07-24T17:50:08] [InMemoryRepository] [DEBUG] Updated entity: id=2 created_at=datetime.datetime(2025, 7, 24, 17, 50, 5, 131069) updated_at=datetime.datetime(2025, 7, 24, 17, 50, 8, 149028) deleted_at=None session_start=datetime.datetime(2025, 7, 24, 17, 50, 5, 131044) session_end=datetime.datetime(2025, 7, 24, 17, 50, 8, 148996) backlog_entry=0
+[2025-07-24T17:50:09] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:50:21] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:21] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:35] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:35] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:41] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:41] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:47] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:47] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 49, 33, 407709) updated_at=datetime.datetime(2025, 7, 24, 17, 50, 47, 160767) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.PLAYING: 'playing'> backlog=1
+[2025-07-24T17:50:47] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:47] [InMemoryRepository] [DEBUG] Updated entity: id=1 created_at=datetime.datetime(2025, 7, 24, 17, 49, 33, 407709) updated_at=datetime.datetime(2025, 7, 24, 17, 50, 47, 161291) deleted_at=None meta_data=1 priority=<BacklogPriority.P3: 3> status=<BacklogStatus.PLAYING: 'playing'> backlog=1
+[2025-07-24T17:50:48] [InMemoryRepository] [DEBUG] Get all entities
+[2025-07-24T17:50:48] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 7, 24, 17, 48, 30, 657357), updated_at=datetime.datetime(2025, 7, 24, 17, 49, 33, 407816), deleted_at=None, title='Awesome Games To Play', entries=[1])]
+[2025-07-24T17:50:48] [InMemoryRepository] [DEBUG] Get entity with id: 1
+[2025-07-24T17:50:48] [InMemoryRepository] [DEBUG] Get all entities with ids: [1]
+[2025-07-24T17:50:48] [InMemoryRepository] [DEBUG] Get entity with id: 1
