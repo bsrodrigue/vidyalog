@@ -43,7 +43,7 @@ class InMemoryRepository(Generic[ID, T], IRepository[ID, T]):
         self._store[entity_id] = updated
         return updated
 
-    def delete(self, entity_id: ID, soft: bool = True) -> bool:
+    def delete(self, entity_id: ID, soft: bool = False) -> bool:
         entity = self._store.get(entity_id)
         if not entity:
             return False
