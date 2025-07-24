@@ -1,21 +1,9 @@
-from dataclasses import dataclass
 from datetime import datetime
-from modules.base.models import BaseDomainModel, BasePersistenceModel
+from modules.base.models import BaseDomainModel
 from typing import Optional
 
 
-@dataclass
-class InputPlaySession(BaseDomainModel):
-    """
-    Tracks individual gaming sessions
-    """
-
-    session_start: Optional[datetime] = datetime.now()
-    session_end: Optional[datetime] = None
-    backlog_entry: Optional[int] = None
-
-
-class PlaySession(BasePersistenceModel):
+class PlaySession(BaseDomainModel):
     """
     Tracks individual gaming sessions
     """

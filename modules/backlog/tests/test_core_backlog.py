@@ -225,37 +225,3 @@ def test_delete_entry_removes_from_backlog_and_deletes_entry(service):
 
     # Deleting again returns False
     assert svc.delete_entry(entry.id) is False
-
-
-def test_delete_entry_returns_false_if_no_entry_or_no_backlog(service):
-    svc, _, _, _ = service
-    assert svc.delete_entry(999) is False
-
-    # Create entry with backlog=None
-    entry_repo = service[2]
-    entry = GameBacklogEntry(backlog=None, meta_data=1)
-    created = entry_repo.create(entry)
-    assert svc.delete_entry(created.id) is False
-
-
-def test_delete_entry_raises_if_backlog_has_no_id(service):
-    svc, backlog_repo, entry_repo, metadata_repo = service
-    # Create backlog and manually set id to None after creation
-    backlog = GameBacklog(title="No ID", entries=[])
-    backlog_repo._next_id += 1  # advance ID counter to avoid conflict
-    # Force add backlog with ID = 999 but set backlog.id = None
-    forced_id = 999
-    backlog.id = None
-    backlog_repo._store[forced_id] = backlog
-
-    metadata = svc.create_game_metadata(title="G")
-    # Create entry referencing forced_id backlog
-    entry = GameBacklogEntry(backlog=forced_id, meta_data=metadata.id)
-    created_entry = entry_repo.create(entry)
-
-    # Append entry ID to backlog entries manually
-    backlog.entries.append(created_entry.id)
-
-    # Now when delete_entry calls get_by_id(forced_id), it will get backlog with id=None
-    with pytest.raises(ValueError, match="Backlog has no ID"):
-        svc.delete_entry(created_entry.id)

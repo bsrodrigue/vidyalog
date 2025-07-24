@@ -1,6 +1,6 @@
 from datetime import datetime
-from modules.play_session.models import InputPlaySession, PlaySession
-from modules.repositories.repositories import IRepository
+from modules.play_session.models import PlaySession
+from modules.repositories.abstract_repository import IRepository
 
 
 class PlaySessionError(Exception):
@@ -11,7 +11,7 @@ class PlaySessionError(Exception):
 class PlaySessionTimerService:
     """Service layer for managing Play Session Timer."""
 
-    def __init__(self, session_repository: IRepository[InputPlaySession, PlaySession]):
+    def __init__(self, session_repository: IRepository[int, PlaySession]):
         self.session_repository = session_repository
 
     # ===============================
@@ -19,7 +19,9 @@ class PlaySessionTimerService:
     # ===============================
 
     def start_session(self) -> PlaySession:
-        session = self.session_repository.create(InputPlaySession())
+        session = self.session_repository.create(
+            PlaySession(session_start=datetime.now(), backlog_entry=0)
+        )
         return session
 
     def stop_session(self, session_id: int) -> PlaySession:
@@ -36,13 +38,13 @@ class PlaySessionTimerService:
 
         session = self.session_repository.update(
             session_id,
-            InputPlaySession(
-                id=session.id,
-                created_at=session.created_at,
-                updated_at=now,
-                session_start=session.session_start,
-                session_end=session.session_end,
-            ),
+            {
+                "id": session.id,
+                "created_at": session.created_at,
+                "updated_at": now,
+                "session_start": session.session_start,
+                "session_end": session.session_end,
+            },
         )
 
         return session

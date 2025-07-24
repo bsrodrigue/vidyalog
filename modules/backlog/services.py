@@ -60,7 +60,7 @@ class GameBacklogService:
         release_date: Optional[datetime] = None,
         developer: str = "",
         publisher: str = "",
-        avg_completion_time: Optional[float] = None,
+        avg_completion_time: float = 0,
         genres: List[Genre] = [],
         platforms: List[Platform] = [],
     ) -> GameMetadata:
