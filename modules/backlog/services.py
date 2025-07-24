@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Any, List, Optional
-from libs.log.base_logger import AbstractLogger
+from libs.log.base_logger import ILogger
 from libs.log.file_logger import FileLogger
 from modules.backlog.models import (
     BacklogPriority,
@@ -20,7 +20,7 @@ class GameBacklogService:
         backlog_repo: IRepository[int, GameBacklog],
         entry_repo: IRepository[int, GameBacklogEntry],
         metadata_repo: IRepository[int, GameMetadata],
-        logger: AbstractLogger = FileLogger("GameBacklogService"),
+        logger: ILogger = FileLogger("GameBacklogService"),
     ):
         self.backlog_repo = backlog_repo
         self.entry_repo = entry_repo
@@ -71,6 +71,22 @@ class GameBacklogService:
             self.entry_repo.delete(entry_id)
         return self.backlog_repo.delete(backlog_id)
 
+    def get_backlog_by_fuzzy_match(self, query: str) -> Optional[GameBacklog]:
+        """Find backlog by ID or fuzzy title match"""
+        if query.isdigit():
+            backlog = self.get_backlog(int(query))
+            if backlog:
+                return backlog
+        backlogs = self.list_all_backlogs()
+        query_lower = query.lower()
+        for b in backlogs:
+            if b.title.lower() == query_lower:
+                return b
+        matches = [b for b in backlogs if query_lower in b.title.lower()]
+        if len(matches) == 1:
+            return matches[0]
+        return None
+
     # GAME METADATA OPERATIONS
 
     def create_game_metadata(
@@ -115,6 +131,21 @@ class GameBacklogService:
 
     def delete_game_metadata(self, metadata_id: int) -> bool:
         return self.metadata_repo.delete(metadata_id)
+
+    def get_game_by_fuzzy_match(self, query: str) -> Optional[GameMetadata]:
+        if query.isdigit():
+            game = self.get_game_metadata(int(query))
+            if game:
+                return game
+        games = self.list_all_game_metadata()
+        query_lower = query.lower()
+        for g in games:
+            if g.title.lower() == query_lower:
+                return g
+        matches = [g for g in games if query_lower in g.title.lower()]
+        if len(matches) == 1:
+            return matches[0]
+        return None
 
     # ENTRY OPERATIONS
 

@@ -16,17 +16,13 @@ from PyQt6.QtWidgets import (
     QMessageBox,
     QLabel,
 )
-from PyQt6.QtCore import Qt
 from modules.play_session.services import PlaySessionTimerService, PlaySessionError
 from modules.backlog.services import GameBacklogService
 from modules.repositories.in_memory_repository import InMemoryRepository
 from modules.backlog.models import (
     BacklogPriority,
     BacklogStatus,
-    GameBacklog,
-    GameMetadata,
 )
-from typing import Optional
 import sys
 
 # Initialize repositories and services
@@ -41,40 +37,6 @@ service = GameBacklogService(
     metadata_repo=metadata_repo,
 )
 play_session_service = PlaySessionTimerService(session_repo)
-
-
-def get_backlog_by_fuzzy_match(query: str) -> Optional[GameBacklog]:
-    """Find backlog by ID or fuzzy title match"""
-    if query.isdigit():
-        backlog = service.get_backlog(int(query))
-        if backlog:
-            return backlog
-    backlogs = service.list_all_backlogs()
-    query_lower = query.lower()
-    for b in backlogs:
-        if b.title.lower() == query_lower:
-            return b
-    matches = [b for b in backlogs if query_lower in b.title.lower()]
-    if len(matches) == 1:
-        return matches[0]
-    return None
-
-
-def get_game_by_fuzzy_match(query: str) -> Optional[GameMetadata]:
-    """Find game by ID or fuzzy title match"""
-    if query.isdigit():
-        game = service.get_game_metadata(int(query))
-        if game:
-            return game
-    games = service.list_all_game_metadata()
-    query_lower = query.lower()
-    for g in games:
-        if g.title.lower() == query_lower:
-            return g
-    matches = [g for g in games if query_lower in g.title.lower()]
-    if len(matches) == 1:
-        return matches[0]
-    return None
 
 
 def format_status_priority(status: BacklogStatus, priority: BacklogPriority) -> str:
@@ -456,8 +418,10 @@ class MainWindow(QMainWindow):
             dialog.accept()
 
     def add_entry(self):
-        game = get_game_by_fuzzy_match(self.entry_game_input.text().strip())
-        backlog = get_backlog_by_fuzzy_match(self.entry_backlog_input.text().strip())
+        game = service.get_game_by_fuzzy_match(self.entry_game_input.text().strip())
+        backlog = service.get_backlog_by_fuzzy_match(
+            self.entry_backlog_input.text().strip()
+        )
         if not game or not backlog:
             QMessageBox.warning(self, "Error", "Game or backlog not found")
             return
@@ -477,7 +441,9 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "Error", str(e))
 
     def view_entries(self):
-        backlog = get_backlog_by_fuzzy_match(self.view_backlog_input.text().strip())
+        backlog = service.get_backlog_by_fuzzy_match(
+            self.view_backlog_input.text().strip()
+        )
         if not backlog:
             QMessageBox.warning(self, "Error", "Backlog not found")
             return

@@ -225,3 +225,63 @@ def test_delete_entry_removes_from_backlog_and_deletes_entry(service):
 
     # Deleting again returns False
     assert svc.delete_entry(entry.id) is False
+
+
+def test_get_backlog_by_fuzzy_match(service):
+    svc, _, _, _ = service
+    # Create test backlogs
+    backlog1 = svc.create_backlog("RPG Games")
+    backlog2 = svc.create_backlog("Adventure Games")
+    backlog3 = svc.create_backlog("Classic RPG")
+
+    # Test exact title match
+    result = svc.get_backlog_by_fuzzy_match("RPG Games")
+    assert result == backlog1
+    assert result.title == "RPG Games"
+
+    # Test partial title match (single match)
+    result = svc.get_backlog_by_fuzzy_match("Adventure")
+    assert result == backlog2
+    assert result.title == "Adventure Games"
+
+    # Test ID match
+    result = svc.get_backlog_by_fuzzy_match(str(backlog1.id))
+    assert result == backlog1
+
+    # Test multiple matches (should return None)
+    result = svc.get_backlog_by_fuzzy_match("RPG")
+    assert result is None
+
+    # Test no matches
+    result = svc.get_backlog_by_fuzzy_match("Puzzle")
+    assert result is None
+
+
+def test_get_game_by_fuzzy_match(service):
+    svc, _, _, _ = service
+    # Create test games
+    game1 = svc.create_game_metadata(title="The Witcher 3")
+    game2 = svc.create_game_metadata(title="Cyberpunk 2077")
+    game3 = svc.create_game_metadata(title="Witcher Classic")
+
+    # Test exact title match
+    result = svc.get_game_by_fuzzy_match("The Witcher 3")
+    assert result == game1
+    assert result.title == "The Witcher 3"
+
+    # Test partial title match (single match)
+    result = svc.get_game_by_fuzzy_match("Cyberpunk")
+    assert result == game2
+    assert result.title == "Cyberpunk 2077"
+
+    # Test ID match
+    result = svc.get_game_by_fuzzy_match(str(game1.id))
+    assert result == game1
+
+    # Test multiple matches (should return None)
+    result = svc.get_game_by_fuzzy_match("Witcher")
+    assert result is None
+
+    # Test no matches
+    result = svc.get_game_by_fuzzy_match("Zelda")
+    assert result is None

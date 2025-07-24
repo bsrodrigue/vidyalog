@@ -5,7 +5,7 @@ from typing import Any, Generic, Optional, TypeVar, cast
 from pydantic import BaseModel
 
 from libs.filter.filter_expression_evaluator import FilterExpressionEvaluator
-from libs.log.base_logger import AbstractLogger
+from libs.log.base_logger import ILogger
 from libs.log.file_logger import FileLogger
 from modules.repositories.abstract_repository import IRepository, PaginatedResult
 
@@ -15,14 +15,14 @@ ID = TypeVar("ID", bound=int)
 
 class InMemoryRepositoryValueException(Exception):
     def __init__(
-        self, message: str, logger: AbstractLogger = FileLogger("InMemoryRepository")
+        self, message: str, logger: ILogger = FileLogger("InMemoryRepository")
     ):
         self.message = message
         logger.error(message)
 
 
 class InMemoryRepository(Generic[ID, T], IRepository[ID, T]):
-    def __init__(self, logger: AbstractLogger = FileLogger("InMemoryRepository")):
+    def __init__(self, logger: ILogger = FileLogger("InMemoryRepository")):
         self._store: dict[ID, T] = {}
         self._next_id: ID = cast(ID, 1)
         self._logger = logger

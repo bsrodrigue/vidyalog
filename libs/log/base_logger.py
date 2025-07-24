@@ -10,7 +10,7 @@ class LogLevel(enum.Enum):
     CRITICAL = "CRITICAL"
 
 
-class AbstractLogger(ABC):
+class ILogger(ABC):
     def __init__(self, name: str = "Logger"):
         self.name = name
 

@@ -1,8 +1,8 @@
-from libs.log.base_logger import AbstractLogger, LogLevel
+from libs.log.base_logger import ILogger, LogLevel
 from datetime import datetime
 
 
-class ConsoleLogger(AbstractLogger):
+class ConsoleLogger(ILogger):
     def _get_timestamp(self) -> str:
         return datetime.now().isoformat(timespec="seconds")
 

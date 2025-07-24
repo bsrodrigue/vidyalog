@@ -1,8 +1,8 @@
-from libs.log.base_logger import AbstractLogger, LogLevel
+from libs.log.base_logger import ILogger, LogLevel
 from datetime import datetime
 
 
-class FileLogger(AbstractLogger):
+class FileLogger(ILogger):
     def __init__(self, name: str = "FileLogger", filepath: str = "log.txt"):
         super().__init__(name)
         self.filepath = filepath
