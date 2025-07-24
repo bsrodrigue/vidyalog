@@ -7,7 +7,7 @@ from typing import Optional
 
 from modules.play_session.services import (
     PlaySessionError,
-    PlaySessionTimerService,
+    PlaySessionService,
 )
 from modules.backlog.services import GameBacklogService
 from modules.repositories.in_memory_repository import InMemoryRepository
@@ -25,7 +25,7 @@ service = GameBacklogService(
     metadata_repo=metadata_repo,
 )
 
-play_session_service = PlaySessionTimerService(session_repo)
+play_session_service = PlaySessionService(session_repo)
 
 # Enhanced command structure with aliases and descriptions
 COMMANDS = {
@@ -198,68 +198,6 @@ def resolve_command(cmd: str) -> Optional[str]:
     return None
 
 
-def get_backlog_by_fuzzy_match(query: str):
-    """Find backlog by ID or fuzzy title match"""
-    # Try as ID first
-    if query.isdigit():
-        backlog = service.get_backlog(int(query))
-        if backlog:
-            return backlog
-
-    # Try fuzzy title match
-    backlogs = service.list_all_backlogs()
-    query_lower = query.lower()
-
-    # Exact match first
-    for b in backlogs:
-        if b.title.lower() == query_lower:
-            return b
-
-    # Partial match
-    matches = [b for b in backlogs if query_lower in b.title.lower()]
-    if len(matches) == 1:
-        return matches[0]
-    elif len(matches) > 1:
-        print(f"Multiple backlogs match '{query}':")
-        for b in matches:
-            print(f"  {b.id}: {b.title}")
-        return None
-
-    print(f"No backlog found matching '{query}'")
-    return None
-
-
-def get_game_by_fuzzy_match(query: str):
-    """Find game by ID or fuzzy title match"""
-    # Try as ID first
-    if query.isdigit():
-        game = service.get_game_metadata(int(query))
-        if game:
-            return game
-
-    # Try fuzzy title match
-    games = service.list_all_game_metadata()
-    query_lower = query.lower()
-
-    # Exact match first
-    for g in games:
-        if g.title.lower() == query_lower:
-            return g
-
-    # Partial match
-    matches = [g for g in games if query_lower in g.title.lower()]
-    if len(matches) == 1:
-        return matches[0]
-    elif len(matches) > 1:
-        print(f"Multiple games match '{query}':")
-        for g in matches:
-            print(f"  {g.id}: {g.title}")
-        return None
-
-    print(f"No game found matching '{query}'")
-    return None
-
-
 def format_status_priority(status: BacklogStatus, priority: BacklogPriority) -> str:
     """Format status and priority with colors/emojis"""
     status_icons = {
@@ -319,7 +257,7 @@ def handle_command(command: str):
                 print("Usage: show <backlog_id_or_name>")
                 return
 
-            backlog = get_backlog_by_fuzzy_match(args[0])
+            backlog = service.get_backlog_by_fuzzy_match(args[0])
             if not backlog:
                 return
 
@@ -345,7 +283,7 @@ def handle_command(command: str):
                 print("Usage: delete <backlog_id_or_name>")
                 return
 
-            backlog = get_backlog_by_fuzzy_match(args[0])
+            backlog = service.get_backlog_by_fuzzy_match(args[0])
             if not backlog:
                 return
 
@@ -385,7 +323,7 @@ def handle_command(command: str):
                 print("Usage: game-info <game_id_or_name>")
                 return
 
-            game = get_game_by_fuzzy_match(args[0])
+            game = service.get_game_by_fuzzy_match(args[0])
             if not game:
                 return
 
@@ -406,7 +344,7 @@ def handle_command(command: str):
                 print("Usage: edit-game <game_id_or_name>")
                 return
 
-            game = get_game_by_fuzzy_match(args[0])
+            game = service.get_game_by_fuzzy_match(args[0])
             if not game:
                 return
 
@@ -444,7 +382,7 @@ def handle_command(command: str):
                 print("Usage: remove-game <game_id_or_name>")
                 return
 
-            game = get_game_by_fuzzy_match(args[0])
+            game = service.get_game_by_fuzzy_match(args[0])
             if not game:
                 return
 
@@ -459,8 +397,8 @@ def handle_command(command: str):
                 print("Example: add 'Zelda' 'My Backlog'")
                 return
 
-            game = get_game_by_fuzzy_match(args[0])
-            backlog = get_backlog_by_fuzzy_match(args[1])
+            game = service.get_game_by_fuzzy_match(args[0])
+            backlog = service.get_backlog_by_fuzzy_match(args[1])
 
             if not game or not backlog:
                 return
@@ -470,10 +408,17 @@ def handle_command(command: str):
 
         elif main_cmd == "entries":
             if not args:
-                print("Usage: entries <backlog_id_or_name>")
+                # Show Default Backlog
+                backlogs = service.backlog_repo.list_all()
+                if len(backlogs) == 0:
+                    print("No Backlogs found")
+                    return
+
+                default_backlog = backlogs[0]
+                handle_command(f"show {default_backlog.id}")
                 return
 
-            backlog = get_backlog_by_fuzzy_match(args[0])
+            backlog = service.get_backlog_by_fuzzy_match(args[0])
             if not backlog:
                 return
 
@@ -485,8 +430,8 @@ def handle_command(command: str):
                 return
 
             try:
-                entry_id = int(args[0])
-                updated = service.update_entry_status(entry_id, BacklogStatus.FINISHED)
+                entry = int(args[0])
+                updated = service.update_entry_status(entry, BacklogStatus.FINISHED)
                 print("✅ Marked as completed!" if updated else "❌ Entry not found")
             except ValueError:
                 print("❌ Invalid entry ID")
@@ -497,8 +442,8 @@ def handle_command(command: str):
                 return
 
             try:
-                entry_id = int(args[0])
-                updated = service.update_entry_status(entry_id, BacklogStatus.PLAYING)
+                entry = int(args[0])
+                updated = service.update_entry_status(entry, BacklogStatus.PLAYING)
                 print("🎮 Started playing!" if updated else "❌ Entry not found")
             except ValueError:
                 print("❌ Invalid entry ID")
@@ -510,7 +455,7 @@ def handle_command(command: str):
                 return
 
             try:
-                entry_id = int(args[0])
+                entry = int(args[0])
                 priority_num = int(args[1])
                 priority_map = {
                     0: BacklogPriority.P0,
@@ -524,7 +469,7 @@ def handle_command(command: str):
                     return
 
                 updated = service.update_entry_priority(
-                    entry_id, priority_map[priority_num]
+                    entry, priority_map[priority_num]
                 )
                 print("✅ Priority updated!" if updated else "❌ Entry not found")
             except ValueError:
@@ -532,8 +477,24 @@ def handle_command(command: str):
 
         # Session management
         elif main_cmd == "session":
-            s = play_session_service.start_session()
-            print(f"⏱️ Started session {s.id} at {s.session_start}")
+            if len(args) < 1:
+                print("Usage: session <backlog_entry>")
+                print("Example: session 'Zelda'")
+                return
+
+            try:
+                entry = args[0]
+
+                entry = service.get_entry_by_fuzzy_match(entry)
+
+                if not entry:
+                    print(f"Entry {entry} not found")
+                    return
+
+                s = play_session_service.start_session(entry.id)
+                print(f"⏱️ Started session {s.id} at {s.session_start}")
+            except Exception as e:
+                print(f"❌ Error: {e}")
 
         elif main_cmd == "stop":
             if not args:
@@ -565,12 +526,13 @@ def handle_command(command: str):
 
             print(f"\n📊 Play Sessions ({len(sessions)}):")
             for s in sessions:
-                status = (
-                    "In Progress"
-                    if s.session_end is None
-                    else f"Ended: {s.session_end}"
-                )
-                print(f"  {s.id}: Started {s.session_start} | {status}")
+                entry = service.get_entry(s.backlog_entry)
+                if not entry:  # Can't we avoid constant checking?
+                    return
+                meta_data = service.get_game_metadata(entry.meta_data)
+                if not meta_data:
+                    return
+                print(f"Game:{meta_data.title}|{s}")
 
         # Utility commands
         elif main_cmd == "help":

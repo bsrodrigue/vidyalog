@@ -16,7 +16,7 @@ from PyQt6.QtWidgets import (
     QMessageBox,
     QLabel,
 )
-from modules.play_session.services import PlaySessionTimerService, PlaySessionError
+from modules.play_session.services import PlaySessionService, PlaySessionError
 from modules.backlog.services import GameBacklogService
 from modules.repositories.in_memory_repository import InMemoryRepository
 from modules.backlog.models import (
@@ -36,7 +36,7 @@ service = GameBacklogService(
     entry_repo=entry_repo,
     metadata_repo=metadata_repo,
 )
-play_session_service = PlaySessionTimerService(session_repo)
+play_session_service = PlaySessionService(session_repo)
 
 
 def format_status_priority(status: BacklogStatus, priority: BacklogPriority) -> str:
@@ -505,9 +505,9 @@ class MainWindow(QMainWindow):
             self.view_entries()
             dialog.accept()
 
-    def start_session(self):
+    def start_session(self, entry_id: int):
         try:
-            s = play_session_service.start_session()
+            s = play_session_service.start_session(entry_id)
             QMessageBox.information(
                 self, "Success", f"Started session {s.id} at {s.session_start}"
             )
@@ -534,10 +534,7 @@ class MainWindow(QMainWindow):
         self.sessions_list.clear()
         sessions = play_session_service.get_all_sessions()
         for s in sessions:
-            status = (
-                "In Progress" if s.session_end is None else f"Ended: {s.session_end}"
-            )
-            self.sessions_list.addItem(f"{s.id}: Started {s.session_start} | {status}")
+            self.sessions_list.addItem(f"{s}")
 
     def refresh_all(self):
         self.refresh_backlogs()

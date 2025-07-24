@@ -184,6 +184,31 @@ class GameBacklogService:
         self.backlog_repo.update(backlog.id, {"entries": backlog.entries})
         return entry
 
+    def get_entry_by_fuzzy_match(self, query: str) -> Optional[GameBacklogEntry]:
+        """Find backlog by ID or fuzzy title match"""
+        if query.isdigit():
+            entry = self.get_entry(int(query))
+            if entry:
+                return entry
+        entries = self.entry_repo.list_all()
+        query_lower = query.lower()
+        for e in entries:
+            meta_data = self.get_game_metadata(e.meta_data)
+            if not meta_data:
+                return None
+            if meta_data.title.lower() == query_lower:
+                return e
+        matches = []
+        for e in entries:
+            meta_data = self.get_game_metadata(e.meta_data)
+            if not meta_data:
+                continue
+            if query_lower in meta_data.title.lower():
+                matches.append(e)
+        if len(matches) == 1:
+            return matches[0]
+        return None
+
     def get_entry(self, entry_id: int) -> Optional[GameBacklogEntry]:
         return self.entry_repo.get_by_id(entry_id)
 

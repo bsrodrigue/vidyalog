@@ -1,4 +1,5 @@
 from datetime import datetime
+from libs.fmt.datetime_formatter import DateTimeFormatter
 from modules.base.models import BaseDomainModel
 from typing import Optional
 
@@ -15,6 +16,20 @@ class PlaySession(BaseDomainModel):
     @property
     def time_played(self) -> float:
         if self.session_end is None:
-            return 0.0
+            return (datetime.now() - self.session_start).total_seconds()
 
         return (self.session_end - self.session_start).total_seconds()
+
+    def __str__(self) -> str:
+        start = DateTimeFormatter.fmt(self.session_start)
+        end = DateTimeFormatter.fmt(self.session_end) if self.session_end else ""
+
+        status = "In Progress" if self.session_end is None else f"Ended: {end}"
+
+        time_played = DateTimeFormatter.fmt(
+            DateTimeFormatter.from_seconds(self.time_played),
+            DateTimeFormatter.PLAY_TIME_STR,
+        )
+
+        _str = f"{self.id}: Started {start} | {status} | Time Played: {time_played}"
+        return _str
