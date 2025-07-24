@@ -1,21 +1,18 @@
-from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
+from pydantic import BaseModel
 
 
-@dataclass
-class InputBaseModel:
+class BaseDomainModel(BaseModel):
     id: Optional[int] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
+    deleted_at: Optional[datetime] = None
 
 
-@dataclass(frozen=True)
-class RepositoryBaseModel:
-    """
-    Return Type from Repository Actions
-    """
-
+class BasePersistenceModel(BaseModel):
     id: int
     created_at: datetime
     updated_at: datetime
+    deleted_at: Optional[datetime] = None
+    is_deleted: bool = False

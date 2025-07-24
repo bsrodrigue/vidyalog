@@ -1,43 +1,39 @@
-from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional
 
-from modules.base.models import InputBaseModel, RepositoryBaseModel
+from modules.base.models import BaseDomainModel, BasePersistenceModel
 from modules.enums.enums import BacklogPriority, BacklogStatus, Genre, Platform
 
 
-@dataclass
-class InputGameMetadata(InputBaseModel):
-    title: Optional[str] = ""
+class GameMetadata(BaseDomainModel):
+    title: str = ""
     description: str = ""
     cover_url: str = ""
     release_date: Optional[datetime] = None
     developer: str = ""
     publisher: str = ""
     avg_completion_time: Optional[float] = None
-    genres: list[Genre] = field(default_factory=list)
-    platforms: list[Platform] = field(default_factory=list)
+    genres: list[Genre] = []
+    platforms: list[Platform] = []
 
 
-@dataclass(frozen=True)
-class GameMetadata(RepositoryBaseModel):
+class GameMetadataPersistenceModel(BasePersistenceModel):
     """
     The Game Information can be provided manually or by scraping the web.
     """
 
-    title: str
+    title: str = ""
     description: str = ""
     cover_url: str = ""
     release_date: Optional[datetime] = None
     developer: str = ""
     publisher: str = ""
     avg_completion_time: Optional[float] = None
-    genres: list[Genre] = field(default_factory=list)
-    platforms: list[Platform] = field(default_factory=list)
+    genres: list[Genre] = []
+    platforms: list[Platform] = []
 
 
-@dataclass
-class InputGameBacklogEntry(InputBaseModel):
+class GameBacklogEntry(BaseDomainModel):
     meta_data: Optional[int] = None
     priority: Optional[BacklogPriority] = None
     status: Optional[BacklogStatus] = None
@@ -46,35 +42,32 @@ class InputGameBacklogEntry(InputBaseModel):
     backlog: Optional[int] = None  # GameBacklog
 
 
-@dataclass(frozen=True)
-class GameBacklogEntry(RepositoryBaseModel):
+class GameBacklogEntryPersistenceModel(BasePersistenceModel):
     """
     Main class for the game entry.
     """
 
-    meta_data: int
-    priority: BacklogPriority
-    status: BacklogStatus
+    meta_data: int = 0
+    priority: BacklogPriority = BacklogPriority.P3
+    status: BacklogStatus = BacklogStatus.INBOX
 
     # Relations
-    backlog: int  # GameBacklog
+    backlog: int = 0  # GameBacklog
 
 
-@dataclass
-class InputGameBacklog(InputBaseModel):
+class GameBacklog(BaseDomainModel):
     title: Optional[str] = ""
 
     # Relations
-    entries: list[int] = field(default_factory=list)  # GameBacklogEntry
+    entries: list[int] = []
 
 
-@dataclass(frozen=True)
-class GameBacklog(RepositoryBaseModel):
+class GameBacklogPersistenceModel(BasePersistenceModel):
     """
     Main class for the backlog.
     """
 
-    title: str
+    title: str = ""
 
     # Relations
-    entries: list[int] = field(default_factory=list)  # GameBacklogEntry
+    entries: list[int] = []
