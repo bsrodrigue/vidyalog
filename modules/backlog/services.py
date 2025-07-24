@@ -1,5 +1,7 @@
 from datetime import datetime
 from typing import Any, List, Optional
+from libs.log.base_logger import AbstractLogger
+from libs.log.file_logger import FileLogger
 from modules.backlog.models import (
     BacklogPriority,
     BacklogStatus,
@@ -18,33 +20,52 @@ class GameBacklogService:
         backlog_repo: IRepository[int, GameBacklog],
         entry_repo: IRepository[int, GameBacklogEntry],
         metadata_repo: IRepository[int, GameMetadata],
+        logger: AbstractLogger = FileLogger("GameBacklogService"),
     ):
         self.backlog_repo = backlog_repo
         self.entry_repo = entry_repo
         self.metadata_repo = metadata_repo
+        self.logger = logger
 
     # BACKLOG OPERATIONS
 
     def create_backlog(
         self, title: str, entries: Optional[list[int]] = None
     ) -> GameBacklog:
-        return self.backlog_repo.create(GameBacklog(title=title, entries=entries or []))
+        backlog = self.backlog_repo.create(
+            GameBacklog(title=title, entries=entries or [])
+        )
+        self.logger.info(f"Backlog {backlog} created successfully")
+        return backlog
 
     def get_backlog(self, backlog_id: int) -> Optional[GameBacklog]:
-        return self.backlog_repo.get_by_id(backlog_id)
+        backlog = self.backlog_repo.get_by_id(backlog_id)
+        if not backlog:
+            self.logger.info(f"Backlog {backlog_id} not found")
+        else:
+            self.logger.info(f"Backlog {backlog} found")
+        return backlog
 
     def search_backlogs(self, query: str) -> PaginatedResult[GameBacklog]:
-        return self.backlog_repo.filter(filters={"title__icontains": query})
+        result = self.backlog_repo.filter(filters={"title__icontains": query})
+
+        self.logger.info(f"Backlogs found: {result}")
+        return result
 
     def list_all_backlogs(self) -> List[GameBacklog]:
-        return self.backlog_repo.list_all()
+        backlogs = self.backlog_repo.list_all()
+        self.logger.info(f"All backlogs found: {backlogs}")
+        return backlogs
 
     def update_backlog(self, backlog_id: int, fields: dict[str, Any]) -> GameBacklog:
-        return self.backlog_repo.update(backlog_id, fields)
+        backlog = self.backlog_repo.update(backlog_id, fields)
+        self.logger.info(f"Backlog {backlog} updated successfully")
+        return backlog
 
     def delete_backlog(self, backlog_id: int) -> bool:
         backlog = self.backlog_repo.get_by_id(backlog_id)
         if not backlog:
+            self.logger.info(f"Backlog {backlog_id} not found for deletion")
             return False
         for entry_id in backlog.entries:
             self.entry_repo.delete(entry_id)

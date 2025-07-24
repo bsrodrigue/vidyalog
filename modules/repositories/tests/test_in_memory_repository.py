@@ -3,7 +3,10 @@ from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
 
-from modules.repositories.in_memory_repository import InMemoryRepository
+from modules.repositories.in_memory_repository import (
+    InMemoryRepository,
+    InMemoryRepositoryValueException,
+)
 from modules.repositories.abstract_repository import PaginatedResult
 
 
@@ -65,7 +68,7 @@ def test_update_entity_patch(repository):
 
 
 def test_update_nonexistent_entity_raises(repository):
-    with pytest.raises(ValueError):
+    with pytest.raises(InMemoryRepositoryValueException):
         repository.update(1234, {"name": "Should fail"})
 
 
