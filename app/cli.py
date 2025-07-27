@@ -5,6 +5,8 @@ from prompt_toolkit.shortcuts import confirm, prompt
 from prompt_toolkit.formatted_text import HTML
 from typing import Optional
 
+from libs.fmt.datetime_formatter import DateTimeFormatter
+from libs.fmt.status_priority import StatusPriorityFormatter
 from modules.play_session.services import (
     PlaySessionError,
     PlaySessionService,
@@ -30,23 +32,23 @@ play_session_service = PlaySessionService(session_repo)
 # Enhanced command structure with aliases and descriptions
 COMMANDS = {
     # Backlog management
-    "new": {
-        "aliases": ["n", "create"],
+    "new-backlog": {
+        "aliases": ["nb"],
         "desc": "Create a new backlog",
         "category": "Backlog",
     },
-    "list": {
-        "aliases": ["l", "ls"],
+    "list-backlogs": {
+        "aliases": ["lb"],
         "desc": "List all backlogs",
         "category": "Backlog",
     },
-    "show": {
-        "aliases": ["s", "view"],
+    "show-backlog": {
+        "aliases": ["sb"],
         "desc": "Show backlog details",
         "category": "Backlog",
     },
-    "delete": {
-        "aliases": ["del", "rm"],
+    "delete_backlog": {
+        "aliases": ["db"],
         "desc": "Delete a backlog",
         "category": "Backlog",
     },
@@ -198,26 +200,6 @@ def resolve_command(cmd: str) -> Optional[str]:
     return None
 
 
-def format_status_priority(status: BacklogStatus, priority: BacklogPriority) -> str:
-    """Format status and priority with colors/emojis"""
-    status_icons = {
-        BacklogStatus.INBOX: "📥",
-        BacklogStatus.PLAYING: "🎮",
-        BacklogStatus.FINISHED: "✅",
-        BacklogStatus.ABANDONED: "❌",
-        BacklogStatus.PAUSED: "⏸️",
-    }
-
-    priority_icons = {
-        BacklogPriority.P0: "🔴",
-        BacklogPriority.P1: "🟡",
-        BacklogPriority.P2: "🟢",
-        BacklogPriority.P3: "⚪",
-    }
-
-    return f"{status_icons.get(status, '❓')} {status.name} | {priority_icons.get(priority, '❓')} {priority.name}"
-
-
 def handle_command(command: str):
     """Enhanced command handler with better UX"""
     if not command.strip():
@@ -233,7 +215,7 @@ def handle_command(command: str):
 
     try:
         # Backlog management
-        if main_cmd == "new":
+        if main_cmd == "new-backlog":
             title = " ".join(args) if args else prompt("Backlog title: ")
             if not title.strip():
                 print("❌ Title cannot be empty")
@@ -241,7 +223,7 @@ def handle_command(command: str):
             backlog = service.create_backlog(title)
             print(f"✅ Created backlog: {backlog.id} - {backlog.title}")
 
-        elif main_cmd == "list":
+        elif main_cmd == "list-backlogs":
             backlogs = service.list_all_backlogs()
             if not backlogs:
                 print("📝 No backlogs found. Create one with 'new <title>'")
@@ -252,9 +234,9 @@ def handle_command(command: str):
                 entry_count = len(service.list_entries_in_backlog(b.id))
                 print(f"  {b.id}: {b.title} ({entry_count} games)")
 
-        elif main_cmd == "show":
+        elif main_cmd == "show-backlog":
             if not args:
-                print("Usage: show <backlog_id_or_name>")
+                print(f"Usage: {main_cmd} <backlog_id_or_name>")
                 return
 
             backlog = service.get_backlog_by_fuzzy_match(args[0])
@@ -273,14 +255,18 @@ def handle_command(command: str):
 
             for e in entries:
                 md = service.metadata_repo.get_by_id(e.meta_data or 0)
+                total_time_played = play_session_service.get_max_playtime(e.id)
                 if md:
-                    status_str = format_status_priority(e.status, e.priority)
-                    print(f"  {e.id}: {md.title}")
-                    print(f"      {status_str}")
+                    status_str = StatusPriorityFormatter.fmt(e.status, e.priority)
+                    print(f"{e.id}: {md.title}")
+                    print(f"\t{status_str}")
+                    print(
+                        f"\tTotal Playtime: {DateTimeFormatter.fmt_playtime(total_time_played)}"
+                    )
 
-        elif main_cmd == "delete":
+        elif main_cmd == "delete_backlog":
             if not args:
-                print("Usage: delete <backlog_id_or_name>")
+                print(f"Usage: {main_cmd} <backlog_id_or_name>")
                 return
 
             backlog = service.get_backlog_by_fuzzy_match(args[0])

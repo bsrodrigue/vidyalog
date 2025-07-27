@@ -20,7 +20,7 @@ def service():
 
 
 def test_create_and_get_backlog(service):
-    svc, backlog_repo, _, _ = service
+    svc, _, _, _ = service
     backlog = svc.create_backlog("My Backlog")
     assert backlog.id is not None
     assert backlog.title == "My Backlog"
@@ -32,7 +32,7 @@ def test_create_and_get_backlog(service):
 
 
 def test_search_backlogs_and_list_all(service):
-    svc, backlog_repo, _, _ = service
+    svc, _, _, _ = service
     svc.create_backlog("First backlog")
     svc.create_backlog("Second backlog")
     svc.create_backlog("Third")
@@ -45,14 +45,14 @@ def test_search_backlogs_and_list_all(service):
 
 
 def test_update_backlog(service):
-    svc, backlog_repo, _, _ = service
+    svc, _, _, _ = service
     backlog = svc.create_backlog("Old Title")
     updated = svc.update_backlog(backlog.id, {"title": "New Title"})
     assert updated.title == "New Title"
 
 
 def test_delete_backlog_deletes_entries_and_backlog(service):
-    svc, backlog_repo, entry_repo, _ = service
+    svc, _, _, _ = service
 
     # Setup metadata first
     metadata = GameMetadata(title="Game")
@@ -80,7 +80,7 @@ def test_delete_backlog_deletes_entries_and_backlog(service):
 
 
 def test_create_game_metadata_and_get(service):
-    svc, _, _, metadata_repo = service
+    svc, _, _, _ = service
     md = svc.create_game_metadata(title="Game X", developer="Dev", publisher="Pub")
     assert md.id is not None
     assert md.title == "Game X"
@@ -91,7 +91,7 @@ def test_create_game_metadata_and_get(service):
 
 
 def test_get_many_game_metadata(service):
-    svc, _, _, metadata_repo = service
+    svc, _, _, _ = service
     md1 = svc.create_game_metadata(title="G1")
     md2 = svc.create_game_metadata(title="G2")
 
@@ -101,7 +101,7 @@ def test_get_many_game_metadata(service):
 
 
 def test_list_all_game_metadata(service):
-    svc, _, _, metadata_repo = service
+    svc, _, _, _ = service
     svc.create_game_metadata(title="A")
     svc.create_game_metadata(title="B")
     all_md = svc.list_all_game_metadata()
@@ -124,7 +124,7 @@ def test_delete_game_metadata(service):
 
 
 def test_add_game_to_backlog_happy_path(service):
-    svc, backlog_repo, entry_repo, metadata_repo = service
+    svc, _, _, _ = service
     backlog = svc.create_backlog("Backlog")
     metadata = svc.create_game_metadata(title="Game 1")
 
@@ -138,21 +138,21 @@ def test_add_game_to_backlog_happy_path(service):
 
 
 def test_add_game_to_backlog_raises_if_missing_backlog(service):
-    svc, _, _, metadata_repo = service
+    svc, _, _, _ = service
     metadata = svc.create_game_metadata(title="Game 1")
     with pytest.raises(ValueError):
         svc.add_game_to_backlog(999, metadata.id)
 
 
 def test_add_game_to_backlog_raises_if_missing_metadata(service):
-    svc, backlog_repo, _, _ = service
+    svc, _, _, _ = service
     backlog = svc.create_backlog("Backlog")
     with pytest.raises(ValueError):
         svc.add_game_to_backlog(backlog.id, 999)
 
 
 def test_add_game_to_backlog_raises_if_entry_id_none(service):
-    svc, backlog_repo, entry_repo, metadata_repo = service
+    svc, _, entry_repo, _ = service
     backlog = svc.create_backlog("Backlog")
     metadata = svc.create_game_metadata(title="Game")
 
@@ -176,7 +176,7 @@ def test_get_entry(service):
 
 
 def test_list_entries_in_backlog(service):
-    svc, backlog_repo, entry_repo, metadata_repo = service
+    svc, _, _, _ = service
     backlog = svc.create_backlog("BL")
     metadata = svc.create_game_metadata(title="G")
     entry1 = svc.add_game_to_backlog(backlog.id, metadata.id)
@@ -191,7 +191,7 @@ def test_list_entries_in_backlog(service):
 
 
 def test_update_entry_status_and_priority(service):
-    svc, _, entry_repo, metadata_repo = service
+    svc, _, _, _ = service
     metadata = svc.create_game_metadata(title="G")
     backlog = svc.create_backlog("BL")
     entry = svc.add_game_to_backlog(backlog.id, metadata.id)
@@ -208,7 +208,7 @@ def test_update_entry_status_and_priority(service):
 
 
 def test_delete_entry_removes_from_backlog_and_deletes_entry(service):
-    svc, backlog_repo, entry_repo, metadata_repo = service
+    svc, _, _, _ = service
     backlog = svc.create_backlog("BL")
     metadata = svc.create_game_metadata(title="G")
     entry = svc.add_game_to_backlog(backlog.id, metadata.id)
@@ -232,7 +232,7 @@ def test_get_backlog_by_fuzzy_match(service):
     # Create test backlogs
     backlog1 = svc.create_backlog("RPG Games")
     backlog2 = svc.create_backlog("Adventure Games")
-    backlog3 = svc.create_backlog("Classic RPG")
+    _ = svc.create_backlog("Classic RPG")
 
     # Test exact title match
     result = svc.get_backlog_by_fuzzy_match("RPG Games")
@@ -262,7 +262,7 @@ def test_get_game_by_fuzzy_match(service):
     # Create test games
     game1 = svc.create_game_metadata(title="The Witcher 3")
     game2 = svc.create_game_metadata(title="Cyberpunk 2077")
-    game3 = svc.create_game_metadata(title="Witcher Classic")
+    _ = svc.create_game_metadata(title="Witcher Classic")
 
     # Test exact title match
     result = svc.get_game_by_fuzzy_match("The Witcher 3")
