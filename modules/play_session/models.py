@@ -20,16 +20,17 @@ class PlaySession(BaseDomainModel):
 
         return (self.session_end - self.session_start).total_seconds()
 
+    @property
+    def is_active(self) -> bool:
+        return self.session_end is None
+
     def __str__(self) -> str:
         start = DateTimeFormatter.fmt(self.session_start)
         end = DateTimeFormatter.fmt(self.session_end) if self.session_end else ""
 
         status = "In Progress" if self.session_end is None else f"Ended: {end}"
 
-        time_played = DateTimeFormatter.fmt(
-            DateTimeFormatter.from_seconds(self.time_played),
-            DateTimeFormatter.PLAY_TIME_STR,
-        )
+        time_played = DateTimeFormatter.fmt_playtime(self.time_played)
 
         _str = f"{self.id}: Started {start} | {status} | Time Played: {time_played}"
         return _str

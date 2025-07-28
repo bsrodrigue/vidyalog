@@ -50,7 +50,6 @@ class DataclassSerializer:
             data=data_dict,
             config=dacite.Config(
                 type_hooks={
-                    # int: int_hook,
                     datetime: datetime.fromisoformat,
                     BacklogPriority: enum_by_name(BacklogPriority),
                     BacklogStatus: enum_by_name(BacklogStatus),

@@ -93,7 +93,6 @@ class InMemoryRepository(Generic[ID, T], IRepository[ID, T]):
         return sum(1 for e in self._store.values() if self._match_filters(e, filters))
 
     def _match_filters(self, entity: T, filters: dict[str, Any]) -> bool:
-        # return all(getattr(entity, k, None) == v for k, v in filters.items())
         return FilterExpressionEvaluator.evaluate(entity, filters)
 
     def filter(

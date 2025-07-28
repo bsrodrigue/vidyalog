@@ -82,3 +82,22 @@ class PlaySessionService:
     def get_all_sessions(self) -> list[PlaySession]:
         sessions = self.session_repository.list_all()
         return sessions
+
+    def get_active_sessions(self) -> list[PlaySession]:
+        result = self.session_repository.filter(
+            filters={"session_end__isnull": ""}
+        )  # Definitely not my proudest API, why not just: "session_end_eq":None
+        return result.result
+
+    def get_played_entries(self) -> set[int]:
+        return set(
+            [session.backlog_entry for session in self.session_repository.list_all()]
+        )
+
+    def get_entries_with_playtime(self) -> dict[int, float]:
+        result = dict()
+
+        for e in self.get_played_entries():
+            result[e] = self.get_max_playtime(e)
+
+        return result

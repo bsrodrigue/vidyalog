@@ -17,6 +17,10 @@ class BacklogStatus(Enum):
     FINISHED = "finished"
     PAUSED = "paused"
 
+    @staticmethod
+    def from_string(status: str):
+        return BacklogStatus[status.upper()]
+
 
 class Genre(Enum):
     ACTION = "action"

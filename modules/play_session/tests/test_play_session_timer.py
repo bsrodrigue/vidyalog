@@ -63,3 +63,20 @@ def test_get_max_playtime(service):
     time_played_2 = svc.get_max_playtime(backlog_entry_1)
 
     assert (time_played_1) == (time_played_2)
+
+
+def test_get_active_sessions(service):
+    svc, _ = service
+
+    backlog_entry_1 = 1
+
+    svc.stop_session(svc.start_session(backlog_entry_1).id)
+    svc.stop_session(svc.start_session(backlog_entry_1).id)
+    svc.stop_session(svc.start_session(backlog_entry_1).id)
+
+    active = svc.get_active_sessions()
+    assert len(active) == 0
+
+    svc.start_session(backlog_entry_1)
+    active = svc.get_active_sessions()
+    assert len(active) == 1

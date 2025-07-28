@@ -53,77 +53,81 @@ COMMANDS = {
         "category": "Backlog",
     },
     # Game metadata management
-    "add-game": {
-        "aliases": ["ag", "game"],
+    "new-game": {
+        "aliases": ["ng"],
         "desc": "Add a new game",
         "category": "Games",
     },
-    "games": {
-        "aliases": ["g", "list-games"],
+    "list-games": {
+        "aliases": ["lg"],
         "desc": "List all games",
         "category": "Games",
     },
-    "game-info": {
-        "aliases": ["gi", "info"],
+    "show-game": {
+        "aliases": ["sg"],
         "desc": "Show game details",
         "category": "Games",
     },
     "edit-game": {
-        "aliases": ["eg", "edit"],
+        "aliases": ["eg"],
         "desc": "Edit game details",
         "category": "Games",
     },
-    "remove-game": {
-        "aliases": ["rg", "remove"],
+    "delete-game": {
+        "aliases": ["dg"],
         "desc": "Remove a game",
         "category": "Games",
     },
     # Entry management
-    "add": {
-        "aliases": ["a", "add-to"],
+    "new-entry": {
+        "aliases": ["ne"],
         "desc": "Add game to backlog",
         "category": "Entries",
     },
-    "entries": {
-        "aliases": ["e", "list-entries"],
+    "list-entries": {
+        "aliases": ["le", "list-entries"],
         "desc": "List entries in backlog",
         "category": "Entries",
     },
-    "done": {
-        "aliases": ["d", "complete"],
+    "mark-finished": {
+        "aliases": ["mf"],
         "desc": "Mark entry as completed",
         "category": "Entries",
     },
-    "playing": {
-        "aliases": ["p", "start"],
+    "mark-playing": {
+        "aliases": ["mp"],
         "desc": "Mark entry as currently playing",
         "category": "Entries",
     },
-    "priority": {
-        "aliases": ["pri", "prio"],
-        "desc": "Change entry priority",
-        "category": "Entries",
-    },
-    "status": {"aliases": ["st"], "desc": "Change entry status", "category": "Entries"},
-    "drop": {
-        "aliases": ["drop-entry"],
+    "mark-abandoned": {
+        "aliases": ["md"],
         "desc": "Remove entry from backlog",
         "category": "Entries",
     },
+    "set-priority": {
+        "aliases": ["sp"],
+        "desc": "Change entry priority",
+        "category": "Entries",
+    },
     # Session management
-    "session": {
-        "aliases": ["sess"],
+    "start-session": {
+        "aliases": ["strt"],
         "desc": "Start a play session",
         "category": "Sessions",
     },
-    "stop": {
-        "aliases": ["end"],
+    "stop-session": {
+        "aliases": ["stp"],
         "desc": "Stop current session",
         "category": "Sessions",
     },
-    "sessions": {
-        "aliases": ["history"],
+    "list-sessions": {
+        "aliases": ["ls"],
         "desc": "Show session history",
+        "category": "Sessions",
+    },
+    "show-playstats": {
+        "aliases": ["show-stats"],
+        "desc": "Show play statistics",
         "category": "Sessions",
     },
     # Utility
@@ -264,7 +268,7 @@ def handle_command(command: str):
                         f"\tTotal Playtime: {DateTimeFormatter.fmt_playtime(total_time_played)}"
                     )
 
-        elif main_cmd == "delete_backlog":
+        elif main_cmd == "delete-backlog":
             if not args:
                 print(f"Usage: {main_cmd} <backlog_id_or_name>")
                 return
@@ -280,7 +284,7 @@ def handle_command(command: str):
                 print("✅ Deleted backlog" if success else "❌ Failed to delete")
 
         # Game management
-        elif main_cmd == "add-game":
+        elif main_cmd == "new-game":
             title = " ".join(args) if args else prompt("Game title: ")
             if not title.strip():
                 print("❌ Title cannot be empty")
@@ -293,7 +297,7 @@ def handle_command(command: str):
             if confirm("Add more details? (description, etc.)"):
                 handle_command(f"edit-game {metadata.id}")
 
-        elif main_cmd == "games":
+        elif main_cmd == "list-games":
             games = service.list_all_game_metadata()
             if not games:
                 print("🎮 No games found. Add some with 'add-game <title>'")
@@ -304,9 +308,9 @@ def handle_command(command: str):
                 desc = f" - {g.description[:50]}..." if g.description else ""
                 print(f"  {g.id}: {g.title}{desc}")
 
-        elif main_cmd == "game-info":
+        elif main_cmd == "show-game":
             if not args:
-                print("Usage: game-info <game_id_or_name>")
+                print(f"Usage: {main_cmd} <game_id_or_name>")
                 return
 
             game = service.get_game_by_fuzzy_match(args[0])
@@ -327,7 +331,7 @@ def handle_command(command: str):
 
         elif main_cmd == "edit-game":
             if not args:
-                print("Usage: edit-game <game_id_or_name>")
+                print(f"Usage: {main_cmd} <game_id_or_name>")
                 return
 
             game = service.get_game_by_fuzzy_match(args[0])
@@ -363,9 +367,9 @@ def handle_command(command: str):
             )
             print(f"✅ Updated: {updated.title}")
 
-        elif main_cmd == "remove-game":
+        elif main_cmd == "delete-game":
             if not args:
-                print("Usage: remove-game <game_id_or_name>")
+                print(f"Usage: {main_cmd} <game_id_or_name>")
                 return
 
             game = service.get_game_by_fuzzy_match(args[0])
@@ -377,9 +381,9 @@ def handle_command(command: str):
                 print("✅ Removed game" if success else "❌ Failed to remove")
 
         # Entry management
-        elif main_cmd == "add":
+        elif main_cmd == "new-entry":
             if len(args) < 2:
-                print("Usage: add <game> <backlog>")
+                print(f"Usage: {main_cmd} <game> <backlog>")
                 print("Example: add 'Zelda' 'My Backlog'")
                 return
 
@@ -392,7 +396,7 @@ def handle_command(command: str):
             service.add_game_to_backlog(backlog.id, game.id)
             print(f"✅ Added '{game.title}' to '{backlog.title}'")
 
-        elif main_cmd == "entries":
+        elif main_cmd == "list-entries":
             if not args:
                 # Show Default Backlog
                 backlogs = service.backlog_repo.list_all()
@@ -401,42 +405,35 @@ def handle_command(command: str):
                     return
 
                 default_backlog = backlogs[0]
-                handle_command(f"show {default_backlog.id}")
+                handle_command(f"show-backlog {default_backlog.id}")
                 return
 
             backlog = service.get_backlog_by_fuzzy_match(args[0])
             if not backlog:
                 return
 
-            handle_command(f"show {backlog.id}")
+            handle_command(f"show-backlog {backlog.id}")
 
-        elif main_cmd == "done":
+        elif main_cmd in ["mark-playing", "mark-finished", "mark-abandoned"]:
             if not args:
-                print("Usage: done <entry_id>")
+                print(f"Usage: {main_cmd} <entry_id>")
                 return
+
+            raw_status = main_cmd.split("-")[0]
+            status = BacklogStatus.from_string(raw_status)
 
             try:
                 entry = int(args[0])
-                updated = service.update_entry_status(entry, BacklogStatus.FINISHED)
-                print("✅ Marked as completed!" if updated else "❌ Entry not found")
+                updated = service.update_entry_status(entry, status)
+                print(
+                    f"✅ Marked as {raw_status}!" if updated else "❌ Entry not found"
+                )
             except ValueError:
                 print("❌ Invalid entry ID")
 
-        elif main_cmd == "playing":
-            if not args:
-                print("Usage: playing <entry_id>")
-                return
-
-            try:
-                entry = int(args[0])
-                updated = service.update_entry_status(entry, BacklogStatus.PLAYING)
-                print("🎮 Started playing!" if updated else "❌ Entry not found")
-            except ValueError:
-                print("❌ Invalid entry ID")
-
-        elif main_cmd == "priority":
+        elif main_cmd == "set-priority":
             if len(args) < 2:
-                print("Usage: priority <entry_id> <1-4>")
+                print(f"Usage: {main_cmd} <entry_id> <1-4>")
                 print("Priority levels: 1=High, 2=Medium, 3=Normal, 4=Low")
                 return
 
@@ -462,9 +459,9 @@ def handle_command(command: str):
                 print("❌ Invalid entry ID or priority")
 
         # Session management
-        elif main_cmd == "session":
+        elif main_cmd == "start-session":
             if len(args) < 1:
-                print("Usage: session <backlog_entry>")
+                print(f"Usage: {main_cmd} <backlog_entry>")
                 print("Example: session 'Zelda'")
                 return
 
@@ -482,11 +479,10 @@ def handle_command(command: str):
             except Exception as e:
                 print(f"❌ Error: {e}")
 
-        elif main_cmd == "stop":
+        elif main_cmd == "stop-session":
             if not args:
                 # Find active session
-                sessions = play_session_service.get_all_sessions()
-                active = [s for s in sessions if s.session_end is None]
+                active = play_session_service.get_all_sessions()
                 if not active:
                     print("No active session to stop")
                     return
@@ -504,7 +500,7 @@ def handle_command(command: str):
             except PlaySessionError as e:
                 print(f"❌ Error: {e}")
 
-        elif main_cmd == "sessions":
+        elif main_cmd == "list-sessions":
             sessions = play_session_service.get_all_sessions()
             if not sessions:
                 print("📊 No sessions found. Start one with 'session'")
@@ -519,6 +515,21 @@ def handle_command(command: str):
                 if not meta_data:
                     return
                 print(f"Game:{meta_data.title}|{s}")
+
+        elif main_cmd == "show-playstats":
+            stats = play_session_service.get_entries_with_playtime()
+
+            print("\n📊 Play Statistics:")
+            for entry_id, time_played in stats.items():
+                entry = service.get_entry(entry_id)
+                if not entry:
+                    return
+                meta_data = service.get_game_metadata(entry.meta_data)
+                if not meta_data:
+                    return
+                print(
+                    f"Game:{meta_data.title} | Time played: {DateTimeFormatter.fmt_playtime(time_played)}"
+                )
 
         # Utility commands
         elif main_cmd == "help":

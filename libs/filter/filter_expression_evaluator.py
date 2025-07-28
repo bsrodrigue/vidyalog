@@ -18,7 +18,7 @@ class FilterExpressionEvaluator:
     @staticmethod
     def _compare(actual: Any, expected: Any, op: str) -> bool:
         if op == "isnull":
-            return (actual is None) == expected
+            return actual is None
 
         if op == "in":
             return actual in expected
