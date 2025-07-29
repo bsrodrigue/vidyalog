@@ -32,5 +32,7 @@ class PlaySession(BaseDomainModel):
 
         time_played = DateTimeFormatter.fmt_playtime(self.time_played)
 
-        _str = f"{self.id}: Started {start} | {status} | Time Played: {time_played}"
+        _str = (
+            f"Session:{self.id}\nStarted {start}\n{status}\nTime Played: {time_played}"
+        )
         return _str

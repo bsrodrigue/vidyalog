@@ -15,14 +15,18 @@ ID = TypeVar("ID", bound=int)
 
 class InMemoryRepositoryValueException(Exception):
     def __init__(
-        self, message: str, logger: ILogger = FileLogger("InMemoryRepository")
+        self,
+        message: str,
+        logger: ILogger = FileLogger("InMemoryRepository", "test_logs.txt"),
     ):
         self.message = message
         logger.error(message)
 
 
 class InMemoryRepository(Generic[ID, T], IRepository[ID, T]):
-    def __init__(self, logger: ILogger = FileLogger("InMemoryRepository")):
+    def __init__(
+        self, logger: ILogger = FileLogger("InMemoryRepository", "test_logs.txt")
+    ):
         self._store: dict[ID, T] = {}
         self._next_id: ID = cast(ID, 1)
         self._logger = logger

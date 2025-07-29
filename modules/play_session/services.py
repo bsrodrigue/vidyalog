@@ -35,13 +35,34 @@ class PlaySessionService:
         self.logger.debug(f"Start Play Session for backlog entry: {backlog_entry}")
         return session
 
-    def stop_session(self, session_id: int) -> PlaySession:
-        session = self.session_repository.get_by_id(session_id)
+    def stop_session(self, session_id: Optional[int] = None) -> PlaySession:
+        """
+        Stops provided session, by default stops first active session
+        """
+        session = None
+
+        if session_id:
+            session = self.session_repository.get_by_id(session_id)
+            self.logger.debug(f"Found session {session_id} to stop")
+
+        else:
+            self.logger.debug("No play session provided, search first active session")
+            result = self.get_active_sessions()
+
+            if len(result) <= 0:
+                raise PlaySessionError(f"No active sessions: {result}")
+
+            session = result[0]
 
         if session is None:
             raise PlaySessionError(
                 f"Error while stopping session: Session {session_id} does not exist"
             )
+
+        if not session.is_active:
+            raise PlaySessionError("Cannot stop an inactive play session")
+
+        session_id = session.id
 
         now = datetime.now()
 
@@ -84,9 +105,7 @@ class PlaySessionService:
         return sessions
 
     def get_active_sessions(self) -> list[PlaySession]:
-        result = self.session_repository.filter(
-            filters={"session_end__isnull": ""}
-        )  # Definitely not my proudest API, why not just: "session_end_eq":None
+        result = self.session_repository.filter(filters={"is_active__eq": True})
         return result.result
 
     def get_played_entries(self) -> set[int]:

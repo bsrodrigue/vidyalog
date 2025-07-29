@@ -13,6 +13,18 @@ def service():
     return svc, session_repo
 
 
+def test_started_sessions_are_active(service):
+    svc, _ = service
+
+    s1 = svc.start_session(1)
+    s2 = svc.start_session(2)
+    s3 = svc.start_session(3)
+
+    assert s1.is_active
+    assert s2.is_active
+    assert s3.is_active
+
+
 def test_get_all_entry_sessions(service):
     svc, _ = service
 
@@ -65,6 +77,19 @@ def test_get_max_playtime(service):
     assert (time_played_1) == (time_played_2)
 
 
+def test_stop_session(service):
+    svc, _ = service
+
+    s1 = svc.start_session(1)
+    s2 = svc.start_session(2)
+
+    s1 = svc.stop_session(s1.id)
+    s2 = svc.stop_session(s2.id)
+
+    assert s1.is_active is False
+    assert s2.is_active is False
+
+
 def test_get_active_sessions(service):
     svc, _ = service
 
@@ -80,3 +105,29 @@ def test_get_active_sessions(service):
     svc.start_session(backlog_entry_1)
     active = svc.get_active_sessions()
     assert len(active) == 1
+
+
+def test_stop_first_active_session_by_default(service):
+    svc, _ = service
+
+    s1 = svc.start_session(1)
+    s2 = svc.start_session(2)
+    s3 = svc.start_session(3)
+
+    svc.stop_session(s1.id)
+    svc.stop_session(s2.id)
+
+    s_ = svc.stop_session()
+
+    assert s_.id == s3.id
+    assert s_.is_active is False
+
+
+def test_cannot_start_session_if_already_active(service):
+    pass
+    svc, _ = service
+
+    backlog_entry_1 = 1
+
+    svc.start_session(backlog_entry_1)
+    svc.start_session(backlog_entry_1)

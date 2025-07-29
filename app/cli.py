@@ -7,19 +7,35 @@ from typing import Optional
 
 from libs.fmt.datetime_formatter import DateTimeFormatter
 from libs.fmt.status_priority import StatusPriorityFormatter
+from modules.play_session.models import PlaySession
 from modules.play_session.services import (
     PlaySessionError,
     PlaySessionService,
 )
 from modules.backlog.services import GameBacklogService
 from modules.repositories.in_memory_repository import InMemoryRepository
-from modules.backlog.models import BacklogPriority, BacklogStatus
+from modules.backlog.models import (
+    BacklogPriority,
+    BacklogStatus,
+    GameBacklog,
+    GameBacklogEntry,
+    GameMetadata,
+)
+from modules.repositories.tinydb_repository import TinyDBRepository
+
+STORAGE = "tinydb"
 
 # Initialize repositories and services
-backlog_repo = InMemoryRepository()
-entry_repo = InMemoryRepository()
-metadata_repo = InMemoryRepository()
-session_repo = InMemoryRepository()
+if STORAGE == "tinydb":
+    backlog_repo = TinyDBRepository(GameBacklog, table_name="backlogs")
+    entry_repo = TinyDBRepository(GameBacklogEntry, table_name="entries")
+    metadata_repo = TinyDBRepository(GameMetadata, table_name="metadata")
+    session_repo = TinyDBRepository(PlaySession, table_name="sessions")
+else:
+    backlog_repo = InMemoryRepository()
+    entry_repo = InMemoryRepository()
+    metadata_repo = InMemoryRepository()
+    session_repo = InMemoryRepository()
 
 service = GameBacklogService(
     backlog_repo=backlog_repo,
@@ -253,7 +269,7 @@ def handle_command(command: str):
 
             if not entries:
                 print(
-                    "  No games in this backlog yet. Add some with 'add <game> <backlog>'"
+                    "  No games in this backlog yet. Add some with 'new-entry <game> <backlog>'"
                 )
                 return
 
@@ -404,8 +420,8 @@ def handle_command(command: str):
                     print("No Backlogs found")
                     return
 
-                default_backlog = backlogs[0]
-                handle_command(f"show-backlog {default_backlog.id}")
+                for backlog in backlogs:
+                    handle_command(f"show-backlog {backlog.id}")
                 return
 
             backlog = service.get_backlog_by_fuzzy_match(args[0])
@@ -419,7 +435,7 @@ def handle_command(command: str):
                 print(f"Usage: {main_cmd} <entry_id>")
                 return
 
-            raw_status = main_cmd.split("-")[0]
+            raw_status = main_cmd.split("-")[1]
             status = BacklogStatus.from_string(raw_status)
 
             try:
@@ -475,24 +491,22 @@ def handle_command(command: str):
                     return
 
                 s = play_session_service.start_session(entry.id)
-                print(f"⏱️ Started session {s.id} at {s.session_start}")
+                print(
+                    f"⏱️ Started session #{s.id} at {DateTimeFormatter.fmt(s.session_start)}"
+                )
             except Exception as e:
                 print(f"❌ Error: {e}")
 
         elif main_cmd == "stop-session":
             if not args:
-                # Find active session
-                active = play_session_service.get_all_sessions()
-                if not active:
-                    print("No active session to stop")
-                    return
-                session_id = active[0].id
-            else:
-                try:
-                    session_id = int(args[0])
-                except ValueError:
-                    print("❌ Invalid session ID")
-                    return
+                play_session_service.stop_session()
+                return
+
+            try:
+                session_id = int(args[0])
+            except ValueError:
+                print("❌ Invalid session ID")
+                return
 
             try:
                 s = play_session_service.stop_session(session_id)
@@ -514,7 +528,10 @@ def handle_command(command: str):
                 meta_data = service.get_game_metadata(entry.meta_data)
                 if not meta_data:
                     return
-                print(f"Game:{meta_data.title}|{s}")
+                print(20 * "-")
+                print(f"{meta_data.title} | Entry #{entry.id}")
+                print(s)
+                print(20 * "-")
 
         elif main_cmd == "show-playstats":
             stats = play_session_service.get_entries_with_playtime()
