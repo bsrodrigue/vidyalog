@@ -5,6 +5,8 @@ from prompt_toolkit.shortcuts import confirm, prompt
 from prompt_toolkit.formatted_text import HTML
 from typing import Optional
 
+from modules.sql.models import UserModel
+
 from libs.fmt.datetime_formatter import DateTimeFormatter
 from libs.fmt.status_priority import StatusPriorityFormatter
 from modules.play_session.models import PlaySession
@@ -569,6 +571,13 @@ def handle_command(command: str):
 
 def main_loop():
     """Enhanced main loop with better error handling"""
+    UserModel.create(
+        {"username": "johndoe", "password": "i_am_in_epstein_list", "age": 70}
+    )
+    results = UserModel.select()
+
+    print(results)
+    return
     print_welcome()
 
     while True:
