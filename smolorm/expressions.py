@@ -1,4 +1,12 @@
-class Expr:
+from abc import ABC, abstractmethod
+
+
+class Expr(ABC):
+    """
+    Abstrace Base Class for SQL Expression
+    """
+
+    @abstractmethod
     def to_sql(self):
         raise NotImplementedError()
 
@@ -51,6 +59,10 @@ class Column(Expr):
     def endswith(self, val):
         return FuncExpr(self.name, "LIKE", f"%{val}")
 
+    def in_(self, values: list) -> Expr:
+        val_str = ",".join([f"'{v}'" if isinstance(v, str) else str(v) for v in values])
+        return FuncExpr(self.name, "IN", f"({val_str})")
+
     def to_sql(self):
         return self.name
 
@@ -91,31 +103,3 @@ class FuncExpr(Expr):
 
 def col(name):
     return Column(name)
-
-
-class ORM:
-    def __init__(self):
-        self._table = None
-        self._columns = ["*"]
-        self._where = None
-
-    @classmethod
-    def from_(cls, table_name):
-        obj = cls()
-        obj._table = table_name
-        return obj
-
-    def select(self, *cols):
-        self._columns = cols or ["*"]
-        return self
-
-    def where(self, expr: Expr):
-        self._where = expr
-        return self
-
-    def run(self):
-        sql = f"SELECT {', '.join(self._columns)} FROM {self._table}"
-        if self._where:
-            sql += f" WHERE {self._where.to_sql()}"
-        print("Generated SQL:", sql)
-        return sql  # In real use: execute this against SQLite

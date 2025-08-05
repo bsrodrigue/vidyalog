@@ -5,11 +5,10 @@ from prompt_toolkit.shortcuts import confirm, prompt
 from prompt_toolkit.formatted_text import HTML
 from typing import Optional
 
-from modules.sql.models import UserModel
 
 from libs.fmt.datetime_formatter import DateTimeFormatter
 from libs.fmt.status_priority import StatusPriorityFormatter
-from modules.play_session.models import PlaySession
+from modules.play_session.sqlmodels import PlaySessionModel
 from modules.play_session.services import (
     PlaySessionError,
     PlaySessionService,
@@ -19,20 +18,22 @@ from modules.repositories.in_memory_repository import InMemoryRepository
 from modules.backlog.models import (
     BacklogPriority,
     BacklogStatus,
-    GameBacklog,
-    GameBacklogEntry,
-    GameMetadata,
 )
-from modules.repositories.tinydb_repository import TinyDBRepository
+from modules.backlog.sqlmodels import (
+    GameBacklogEntryModel,
+    GameBacklogModel,
+    GameMetadataModel,
+)
+from modules.repositories.smol_sql_repository import SmolORMRepository
 
-STORAGE = "tinydb"
+STORAGE = "smol_orm"
 
 # Initialize repositories and services
-if STORAGE == "tinydb":
-    backlog_repo = TinyDBRepository(GameBacklog, table_name="backlogs")
-    entry_repo = TinyDBRepository(GameBacklogEntry, table_name="entries")
-    metadata_repo = TinyDBRepository(GameMetadata, table_name="metadata")
-    session_repo = TinyDBRepository(PlaySession, table_name="sessions")
+if STORAGE == "smol_orm":
+    backlog_repo = SmolORMRepository(GameBacklogModel)
+    entry_repo = SmolORMRepository(GameBacklogEntryModel)
+    metadata_repo = SmolORMRepository(GameMetadataModel)
+    session_repo = SmolORMRepository(PlaySessionModel)
 else:
     backlog_repo = InMemoryRepository()
     entry_repo = InMemoryRepository()
@@ -571,13 +572,6 @@ def handle_command(command: str):
 
 def main_loop():
     """Enhanced main loop with better error handling"""
-    UserModel.create(
-        {"username": "johndoe", "password": "i_am_in_epstein_list", "age": 70}
-    )
-    results = UserModel.select()
-
-    print(results)
-    return
     print_welcome()
 
     while True:
