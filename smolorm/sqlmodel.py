@@ -3,9 +3,10 @@ import json
 from collections import OrderedDict
 from abc import ABC
 from enum import Enum
-from typing import Any, Optional
+from typing import Union
 from sqlalchemy import text
 from smolorm.connection import engine
+from smolorm.expressions import col
 from smolorm.orm import ORM
 
 
@@ -87,18 +88,27 @@ class SqlModel(ABC):
         query_str = query_str.rstrip(", ")
         query_str += ");"
 
-        print(f"==CREATE MODEL {cls.__name__} QUERY==:\n{query_str}\n")
+        # print(f"==CREATE MODEL {cls.__name__} QUERY==:\n{query_str}\n")
         connection.execute(text(query_str))
         connection.commit()
         connection.close()
         return super().__init_subclass__()
 
     @classmethod
-    def create(cls, fields: Optional[dict[str, Any]] = None):
-        return ORM.create(cls.table_name, fields)
+    def create(cls, fields: dict[str, Union[str, int]]):
+        row_id = ORM.create(cls.table_name, fields)
+        result = ORM.from_(cls.table_name).select().where(col("id") == row_id).run()
+
+        if not isinstance(result, list):
+            raise SmolORMException(f"Failed to create {cls.__name__}")
+
+        if len(result) <= 0:
+            raise SmolORMException(f"Failed to create {cls.__name__}")
+
+        return result[0]
 
     @classmethod
-    def update(cls, fields: Optional[dict[str, Any]] = None):
+    def update(cls, fields: dict[str, Union[str, int]]):
         return ORM.update(cls.table_name, fields)
 
     @classmethod

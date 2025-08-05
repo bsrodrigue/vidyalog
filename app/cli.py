@@ -8,6 +8,7 @@ from typing import Optional
 
 from libs.fmt.datetime_formatter import DateTimeFormatter
 from libs.fmt.status_priority import StatusPriorityFormatter
+from modules.play_session.models import PlaySession
 from modules.play_session.sqlmodels import PlaySessionModel
 from modules.play_session.services import (
     PlaySessionError,
@@ -18,6 +19,9 @@ from modules.repositories.in_memory_repository import InMemoryRepository
 from modules.backlog.models import (
     BacklogPriority,
     BacklogStatus,
+    GameBacklog,
+    GameBacklogEntry,
+    GameMetadata,
 )
 from modules.backlog.sqlmodels import (
     GameBacklogEntryModel,
@@ -30,10 +34,10 @@ STORAGE = "smol_orm"
 
 # Initialize repositories and services
 if STORAGE == "smol_orm":
-    backlog_repo = SmolORMRepository(GameBacklogModel)
-    entry_repo = SmolORMRepository(GameBacklogEntryModel)
-    metadata_repo = SmolORMRepository(GameMetadataModel)
-    session_repo = SmolORMRepository(PlaySessionModel)
+    backlog_repo = SmolORMRepository(GameBacklogModel, GameBacklog)
+    entry_repo = SmolORMRepository(GameBacklogEntryModel, GameBacklogEntry)
+    metadata_repo = SmolORMRepository(GameMetadataModel, GameMetadata)
+    session_repo = SmolORMRepository(PlaySessionModel, PlaySession)
 else:
     backlog_repo = InMemoryRepository()
     entry_repo = InMemoryRepository()

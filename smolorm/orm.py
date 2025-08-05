@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any, Optional, Union
 from sqlalchemy import inspection, text
 from smolorm.connection import engine
 from smolorm.expressions import Expr
@@ -16,6 +16,7 @@ class ORM:
         self._columns = ["*"]
         self._where = None
         self._sql = ""
+        self._op = ""
 
     @classmethod
     def from_(cls, table_name):
@@ -27,47 +28,38 @@ class ORM:
     def update(cls, table_name: str, fields: Optional[dict[str, Any]] = None):
         obj = cls()
         obj._table = table_name
+        obj._op = "UPDATE"
         if fields is None:
             fields = {}
 
-        query_str = f"UPDATE {obj._table} "
+        query_str = f"UPDATE {obj._table} SET "
         for key, val in fields.items():
             val = f'"{val}"' if isinstance(val, str) else val
-            query_str += f"SET {key} = {val}, "
+            query_str += f"{key} = {val}, "
         query_str = query_str.rstrip(", ")
 
         obj._sql = query_str
         return obj
 
     @classmethod
-    def create(cls, table_name: str, fields: Optional[dict[str, Any]] = None):
+    def create(cls, table_name: str, fields: dict[str, Union[str, int]]) -> int:
         connection = engine.connect()
         transaction = connection.begin()
-        if fields is not None:
-            query_str = f"INSERT INTO {table_name} "
-            query_str += "("
-            for key, val in fields.items():
-                query_str += f"{key} "
-                query_str += ", "
-            query_str = query_str.rstrip(", ")
-            query_str += ") "
 
-            query_str += "VALUES("
-            for key, val in fields.items():
-                query_str += f"'{val}', "
-            query_str = query_str.rstrip(", ")
-            query_str += ");"
-        else:
-            query_str = f"INSERT INTO {table_name} "
+        columns = ", ".join(fields.keys())
+        placeholders = ", ".join([f":{key}" for key in fields.keys()])
+        query_str = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
 
-        connection.execute(text(query_str))
+        cursor = connection.execute(text(query_str), fields)
         transaction.commit()
         connection.close()
+        return cursor.lastrowid
 
     @classmethod
     def delete(cls, table_name: str):
         obj = cls()
         obj._table = table_name
+        obj._op = "DELETE"
 
         obj._sql = f"DELETE FROM {table_name} "
 
@@ -98,22 +90,22 @@ class ORM:
         if self._where:
             self._sql += f" WHERE {self._where.to_sql()}"
 
-        try:
-            connection = engine.connect()
-            results = connection.execute(text(self._sql))
-            connection.commit()
+        connection = engine.connect()
+        cursor = connection.execute(text(self._sql))
+        connection.commit()
 
-            inspection_result = inspection.inspect(engine)
-            cols = inspection_result.get_columns(self._table or "")
-            cols = [col["name"] for col in cols]
+        if self._op == "DELETE" or self._op == "UPDATE":
+            return cursor.lastrowid
 
-            self._columns = cols if self._columns == ["*"] else self._columns
+        inspection_result = inspection.inspect(engine)
+        cols = inspection_result.get_columns(self._table or "")
+        cols = [col["name"] for col in cols]
 
-            rows = []
+        self._columns = cols if self._columns == ["*"] else self._columns
 
-            for r in results.all():
-                rows.append(dict(zip(self._columns, r)))
+        rows = []
 
-            return rows
-        except Exception:
-            return []
+        for r in cursor.all():
+            rows.append(dict(zip(self._columns, r)))
+
+        return rows
