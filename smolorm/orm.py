@@ -1,5 +1,5 @@
-from typing import Union
-from sqlalchemy import inspection, text
+from typing import Any, Union
+from sqlalchemy import CursorResult, inspection, text
 from smolorm.connection import engine
 from smolorm.expressions import Expr
 
@@ -74,6 +74,7 @@ class ORM:
 
     def where(self, expr: Expr):
         self._lastopflag = "WHERE"
+        self._where = expr
         self._sql += f" WHERE {expr.to_sql()}"
         return self
 
@@ -96,11 +97,14 @@ class ORM:
         connection = engine.connect()
         cursor = connection.execute(text(self._sql))
         connection.commit()
+        connection.close()
 
-        if self._is_delete or self._is_update or self._is_create:
-            return []
-            # return cursor.lastrowid
+        if self._is_delete or self._is_update:
+            return self._fetch_rows()
 
+        return self._to_dict(cursor)
+
+    def _to_dict(self, cursor: CursorResult[Any]):
         inspection_result = inspection.inspect(engine)
         cols = inspection_result.get_columns(self._table or "")
         cols = [col["name"] for col in cols]
@@ -109,7 +113,22 @@ class ORM:
 
         rows = []
 
-        for r in cursor.all():
+        for r in cursor.fetchall():
             rows.append(dict(zip(self._columns, r)))
 
+        return rows
+
+    def _fetch_rows(self):
+        if not self._where:
+            return []
+
+        where_clause = self._where.to_sql()
+        query_str = f"SELECT * FROM {self._table} WHERE {where_clause}"
+
+        connection = engine.connect()
+        cursor = connection.execute(text(query_str))
+
+        rows = self._to_dict(cursor)
+
+        connection.close()
         return rows

@@ -51,16 +51,18 @@ class Column(Expr):
         return BinaryExpr(self.name, ">=", other)
 
     def contains(self, val):
-        return FuncExpr(self.name, "LIKE", f"%{val}%")
+        return FuncExpr(self.name, "LIKE", f'"%{val}%"')
 
     def startswith(self, val):
-        return FuncExpr(self.name, "LIKE", f"{val}%")
+        return FuncExpr(self.name, "LIKE", f'"{val}%"')
 
     def endswith(self, val):
-        return FuncExpr(self.name, "LIKE", f"%{val}")
+        return FuncExpr(self.name, "LIKE", f'"%{val}"')
 
     def in_(self, values: list) -> Expr:
-        val_str = ",".join([f"'{v}'" if isinstance(v, str) else str(v) for v in values])
+        val_str = ",".join(
+            [f"{v}" if isinstance(v, (int, float)) else f"'{v}'" for v in values]
+        )
         return FuncExpr(self.name, "IN", f"({val_str})")
 
     def to_sql(self):
@@ -92,7 +94,7 @@ class FuncExpr(Expr):
         self.pattern = pattern
 
     def to_sql(self):
-        return f"{self.column} {self.op} '{self.pattern}'"
+        return f"{self.column} {self.op} {self.pattern}"
 
     def __and__(self, other):
         return AndExpr(self, other)

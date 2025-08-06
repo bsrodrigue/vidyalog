@@ -9100,3 +9100,333 @@ Time Played: 00:00:00
 [2025-08-06T14:02:01] [PlaySessionService] [DEBUG] Stop Play Session 3
 [2025-08-06T14:02:01] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
 [2025-08-06T14:02:01] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T16:28:51] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T16:28:51] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T16:28:56] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T16:28:56] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T16:29:53] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T16:29:53] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T16:30:04] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T16:30:04] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T16:31:14] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T16:31:14] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T16:36:21] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T16:36:21] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:08:04] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:08:04] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:09:35] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:09:35] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:10:02] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:10:02] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 318847) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 318847) deleted_at=None title='My Backlog' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 318847) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 318847) deleted_at=None title='My Backlog' entries=[] found
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320098) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320098) deleted_at=None title='First backlog' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=2 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320267) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320267) deleted_at=None title='Second backlog' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=3 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320416) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320416) deleted_at=None title='Third' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlogs found: result=[GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320098), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320098), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320267), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320267), deleted_at=None, title='Second backlog', entries=[])] total=2 has_next=False next_cursor=None
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320098), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320098), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320267), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320267), deleted_at=None, title='Second backlog', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320416), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 320416), deleted_at=None, title='Third', entries=[])]
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 321394) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 321394) deleted_at=None title='Old Title' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 321394) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 321554) deleted_at=None title='New Title' entries=[] updated successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 328105) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 328105) deleted_at=None title='Backlog To Delete' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 328105) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 332829) deleted_at=None title='Backlog To Delete' entries=[1, 2] found
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog 1 not found
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 337757) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 337757) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 337757) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 338189) deleted_at=None title='Backlog' entries=[1] found
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 339568) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 339568) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 340341) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 340341) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 341920) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 341920) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 343469) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 343469) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 344628) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 344628) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 344628) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345042) deleted_at=None title='BL' entries=[1] found
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 344628) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345168) deleted_at=None title='BL' entries=[] found
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857) deleted_at=None title='RPG Games' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=2 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002) deleted_at=None title='Adventure Games' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=3 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099) deleted_at=None title='Classic RPG' entries=[] created successfully
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857) updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857) deleted_at=None title='RPG Games' entries=[] found
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:10:03] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 345857), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346002), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099), updated_at=datetime.datetime(2025, 8, 6, 17, 10, 3, 346099), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 3
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 4 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 4
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 3
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 3
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] No play session provided, search first active session
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:10:03] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:16] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:12:16] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 70239) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 70239) deleted_at=None title='My Backlog' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 70239) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 70239) deleted_at=None title='My Backlog' entries=[] found
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71209) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71209) deleted_at=None title='First backlog' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=2 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71343) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71343) deleted_at=None title='Second backlog' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=3 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71440) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71440) deleted_at=None title='Third' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlogs found: result=[GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71209), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71209), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71343), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71343), deleted_at=None, title='Second backlog', entries=[])] total=2 has_next=False next_cursor=None
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71209), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71209), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71343), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71343), deleted_at=None, title='Second backlog', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71440), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 71440), deleted_at=None, title='Third', entries=[])]
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 72312) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 72312) deleted_at=None title='Old Title' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 72312) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 72433) deleted_at=None title='New Title' entries=[] updated successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 73170) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 73170) deleted_at=None title='Backlog To Delete' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 73170) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 73547) deleted_at=None title='Backlog To Delete' entries=[1, 2] found
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog 1 not found
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 77995) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 77995) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 77995) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 78294) deleted_at=None title='Backlog' entries=[1] found
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 79562) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 79562) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 80254) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 80254) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 81952) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 81952) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 83186) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 83186) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 84126) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 84126) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 84126) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 84433) deleted_at=None title='BL' entries=[1] found
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 84126) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 84560) deleted_at=None title='BL' entries=[] found
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226) deleted_at=None title='RPG Games' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=2 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344) deleted_at=None title='Adventure Games' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=3 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435) deleted_at=None title='Classic RPG' entries=[] created successfully
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226) updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226) deleted_at=None title='RPG Games' entries=[] found
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:12:17] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85226), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85344), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435), updated_at=datetime.datetime(2025, 8, 6, 17, 12, 17, 85435), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 3
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 4 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 4
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 3
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 3
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] No play session provided, search first active session
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:12:17] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:34:29] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 888562) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 888562) deleted_at=None title='My Backlog' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 888562) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 888562) deleted_at=None title='My Backlog' entries=[] found
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889561) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889561) deleted_at=None title='First backlog' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=2 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889691) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889691) deleted_at=None title='Second backlog' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=3 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889789) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889789) deleted_at=None title='Third' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlogs found: result=[GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889561), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889561), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889691), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889691), deleted_at=None, title='Second backlog', entries=[])] total=2 has_next=False next_cursor=None
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889561), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889561), deleted_at=None, title='First backlog', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889691), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889691), deleted_at=None, title='Second backlog', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889789), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 889789), deleted_at=None, title='Third', entries=[])]
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 890664) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 890664) deleted_at=None title='Old Title' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 890664) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 890790) deleted_at=None title='New Title' entries=[] updated successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 891528) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 891528) deleted_at=None title='Backlog To Delete' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 891528) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 891906) deleted_at=None title='Backlog To Delete' entries=[1, 2] found
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog 1 not found
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 896265) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 896265) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 896265) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 896575) deleted_at=None title='Backlog' entries=[1] found
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 897935) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 897935) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 898652) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 898652) deleted_at=None title='Backlog' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 900151) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 900151) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 901370) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 901370) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 902358) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 902358) deleted_at=None title='BL' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 902358) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 902683) deleted_at=None title='BL' entries=[1] found
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 902358) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 902819) deleted_at=None title='BL' entries=[] found
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557) deleted_at=None title='RPG Games' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=2 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675) deleted_at=None title='Adventure Games' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=3 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769) deleted_at=None title='Classic RPG' entries=[] created successfully
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557) updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557) deleted_at=None title='RPG Games' entries=[] found
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:34:29] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903557), deleted_at=None, title='RPG Games', entries=[]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903675), deleted_at=None, title='Adventure Games', entries=[]), GameBacklog(id=3, created_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769), updated_at=datetime.datetime(2025, 8, 6, 17, 34, 29, 903769), deleted_at=None, title='Classic RPG', entries=[])]
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 3
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 4 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 4
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 3
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Get all play sessions for backlog entry 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 3 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 3
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Found session 2 to stop
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 2
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] No play session provided, search first active session
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Stop Play Session 3
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:29] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:34:33] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:34:33] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:37:23] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:37:23] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:37:26] [GameBacklogService] [INFO] All backlogs found: []
+[2025-08-06T17:37:34] [GameBacklogService] [INFO] Backlog id=1 created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159) updated_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159) deleted_at=None title='Souls-Likes' entries=[] created successfully
+[2025-08-06T17:37:36] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), deleted_at=None, title='Souls-Likes', entries=[])]
+[2025-08-06T17:38:44] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), deleted_at=None, title='Souls-Likes', entries=[])]
+[2025-08-06T17:38:50] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), deleted_at=None, title='Souls-Likes', entries=[])]
+[2025-08-06T17:38:54] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), deleted_at=None, title='Souls-Likes', entries=[])]
+[2025-08-06T17:40:51] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:40:51] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:40:57] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), deleted_at=None, title='Souls-Likes', entries=[])]
+[2025-08-06T17:42:12] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:42:12] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:42:19] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), deleted_at=None, title='Souls-Likes', entries=[])]
+[2025-08-06T17:42:43] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:42:43] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:42:47] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), deleted_at=None, title='Souls-Likes', entries=[])]
+[2025-08-06T17:43:44] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:43:44] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:43:45] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:46:36] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:46:36] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:46:38] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:48:49] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:48:49] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:48:50] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:49:32] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:49:32] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:49:33] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:49:59] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:49:59] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:50:00] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:51:48] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:51:48] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:51:49] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:52:26] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:52:26] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:52:28] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:56:25] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:56:25] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:56:26] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:56:52] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 1
+[2025-08-06T17:57:03] [PlaySessionService] [DEBUG] No play session provided, search first active session
+[2025-08-06T17:59:50] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T17:59:50] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T17:59:51] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 6, 17, 42, 47, 861532), deleted_at=None, title='Souls-Likes', entries=[2])]
+[2025-08-06T17:59:53] [PlaySessionService] [DEBUG] No play session provided, search first active session
+[2025-08-06T18:00:34] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-06T18:00:34] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-06T18:00:39] [PlaySessionService] [DEBUG] No play session provided, search first active session
+[2025-08-06T18:00:39] [PlaySessionError] [INFO] Log file log.txt already exists
+[2025-08-06T18:00:39] [PlaySessionError] [ERROR] No active sessions: []
+[2025-08-06T18:00:56] [PlaySessionService] [DEBUG] Found session 1 to stop
+[2025-08-06T18:00:56] [PlaySessionService] [DEBUG] Stop Play Session 1

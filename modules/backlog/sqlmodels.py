@@ -19,12 +19,12 @@ class GameMetadataModel(SqlModel):
 
 class GameBacklogEntryModel(SqlModel):
     table_name: str = "game_backlog_entries"
-    meta_data: int
+    meta_data: int = 0
     priority: BacklogPriority = BacklogPriority.P3
     status: BacklogStatus = BacklogStatus.INBOX
 
     # Relations
-    backlog: int  # GameBacklog
+    backlog: int = 0  # GameBacklog
 
 
 class GameBacklogModel(SqlModel):

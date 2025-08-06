@@ -1,11 +1,12 @@
 from contextlib import contextmanager
 from datetime import datetime
+from enum import Enum
+from functools import reduce
 import json
 from typing import Any, Generic, Optional, TypeVar, cast
 
 from pydantic import BaseModel
 
-from libs.filter.filter_expression_evaluator import FilterExpressionEvaluator
 from libs.log.base_logger import ILogger
 from libs.log.file_logger import FileLogger
 from modules.repositories.abstract_repository import IRepository, PaginatedResult
@@ -23,6 +24,8 @@ def serialize(entity: dict[str, Any]) -> dict[str, Any]:
             entity[key] = json.dumps(entity[key])
         if isinstance(val, datetime):
             entity[key] = val.isoformat()
+        if isinstance(val, Enum):
+            entity[key] = val.value
 
     return entity
 
@@ -33,6 +36,8 @@ def deserialize(entity: dict[str, Any]) -> dict[str, Any]:
             entity[key] = json.loads(entity[key])
         if isinstance(val, str) and val.endswith("Z"):
             entity[key] = datetime.fromisoformat(val)
+        if isinstance(val, str) and val.isnumeric():
+            entity[key] = int(val)
 
     return entity
 
@@ -89,12 +94,7 @@ class SmolORMRepository(Generic[ID, T], IRepository[ID, T]):
     def update(self, entity_id: ID, patch: dict[str, Any]) -> T:
         patch["updated_at"] = datetime.now()
         patch = serialize(patch)
-        result_id = self._model.update(patch).where(col("id") == entity_id).run()
-
-        if isinstance(result_id, list):
-            raise ValueError("Result is not an id")
-
-        result = self._model.select().where(col("id") == result_id).run()
+        result = self._model.update(patch).where(col("id") == entity_id).run()
 
         if not isinstance(result, list):
             raise ValueError("Result is not a list")
@@ -166,14 +166,29 @@ class SmolORMRepository(Generic[ID, T], IRepository[ID, T]):
 
     def exists(self, filters: dict[str, Any]) -> bool:
         self._logger.debug(f"Check existence of entities with filters: {filters}")
-        return any(self._match_filters(e, filters) for e in self._store.values())
+        filter_expressions = [(col(key) == val) for key, val in filters.items()]
+
+        if not filter_expressions:
+            return False
+
+        final_expression = reduce(lambda x, y: (x) & (y), filter_expressions)
+
+        result = self._model.select().where(final_expression).limit(1).run()
+
+        return len(result) > 0
 
     def count(self, filters: dict[str, Any]) -> int:
         self._logger.debug(f"Count entities with filters: {filters}")
-        return sum(1 for e in self._store.values() if self._match_filters(e, filters))
+        filter_expressions = [(col(key) == val) for key, val in filters.items()]
 
-    def _match_filters(self, entity: T, filters: dict[str, Any]) -> bool:
-        return FilterExpressionEvaluator.evaluate(entity, filters)
+        if not filter_expressions:
+            return False
+
+        final_expression = reduce(lambda x, y: (x) & (y), filter_expressions)
+
+        result = self._model.select().where(final_expression).limit(1).run()
+
+        return len(result)
 
     def filter(
         self,
@@ -185,43 +200,28 @@ class SmolORMRepository(Generic[ID, T], IRepository[ID, T]):
         cursor: Optional[Any] = None,
         distinct: bool = False,
     ) -> PaginatedResult[T]:
-        items = [e for e in self._store.values() if self._match_filters(e, filters)]
+        filter_expressions = [(col(key) == val) for key, val in filters.items()]
 
-        if order_by:
-            items = [
-                e for e in items if getattr(e, order_by, None) is not None
-            ]  # remove unsortables
-            items.sort(
-                key=lambda x: getattr(x, order_by),
-                reverse=descending,  # type: ignore
-            )
+        if not filter_expressions:
+            return PaginatedResult(result=[], total=0, has_next=False, next_cursor=None)
 
-        if cursor is not None:
-            try:
-                cursor_index = next(
-                    i for i, e in enumerate(items) if getattr(e, "id", None) == cursor
-                )
-                items = items[cursor_index + 1 :]
-            except StopIteration:
-                items = []
+        final_expression = reduce(lambda x, y: (x) & (y), filter_expressions)
 
-        total = len(items)
+        result = self._model.select().where(final_expression).run()
 
-        if offset:
-            items = items[offset:]
+        total = len(result)
 
         has_next = False
         next_cursor = None
 
-        if limit is not None:
-            has_next = len(items) > limit
-            items = items[:limit]
-            if has_next:
-                next_cursor = str(getattr(items[-1], "id"))
+        self._logger.debug(f"Filtered entities: {result}")
 
-        self._logger.debug(f"Filtered entities: {items}")
+        result = list(
+            map(lambda x: self._pydantic_model.model_validate(deserialize(x)), result)
+        )
+
         return PaginatedResult(
-            result=items, total=total, has_next=has_next, next_cursor=next_cursor
+            result=result, total=total, has_next=has_next, next_cursor=next_cursor
         )
 
     @contextmanager

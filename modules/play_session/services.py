@@ -105,7 +105,7 @@ class PlaySessionService:
         return sessions
 
     def get_active_sessions(self) -> list[PlaySession]:
-        result = self.session_repository.filter(filters={"is_active__eq": True})
+        result = self.session_repository.filter(filters={"session_end": "None"})
         return result.result
 
     def get_played_entries(self) -> set[int]:
