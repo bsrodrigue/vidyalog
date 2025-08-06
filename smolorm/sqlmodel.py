@@ -96,7 +96,8 @@ class SqlModel(ABC):
 
     @classmethod
     def create(cls, fields: dict[str, Union[str, int]]):
-        row_id = ORM.create(cls.table_name, fields)
+        table = cls.table_name
+        row_id = ORM.from_(table).create(fields)
         result = ORM.from_(cls.table_name).select().where(col("id") == row_id).run()
 
         if not isinstance(result, list):
@@ -109,11 +110,13 @@ class SqlModel(ABC):
 
     @classmethod
     def update(cls, fields: dict[str, Union[str, int]]):
-        return ORM.update(cls.table_name, fields)
+        table = cls.table_name
+        return ORM.from_(table).update(fields)
 
     @classmethod
     def delete(cls):
-        return ORM.delete(cls.table_name)
+        table = cls.table_name
+        return ORM.from_(table).delete()
 
     @classmethod
     def select(cls, *cols):
