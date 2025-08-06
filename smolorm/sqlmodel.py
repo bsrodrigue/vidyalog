@@ -10,9 +10,31 @@ from smolorm.expressions import col
 from smolorm.orm import ORM
 
 
+class SmolType(Enum):
+    NONE = "NONE"
+    TEXT = "TEXT"
+    INT = "INT"
+    REAL = "REAL"
+    DATE = "DATE"
+
+
+class SmolField(ABC):
+    def __init__(self, required: bool = False):
+        self.type: SmolType = SmolType.NONE
+        self.required = required
+
+
+class TextField(SmolField):
+    def __init__(self, required: bool = False):
+        super().__init__(required)
+        self.type = SmolType.TEXT
+
+
 class SmolORMException(Exception):
     def __init__(self, message: str = ""):
         self.message = message
+
+        # TODO: Keep going
 
 
 class SqlModel(ABC):
