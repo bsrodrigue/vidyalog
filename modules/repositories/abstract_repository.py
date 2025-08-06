@@ -3,7 +3,7 @@ from typing import Any, ContextManager, Generic, List, Optional, TypeVar
 
 from pydantic import BaseModel
 
-T = TypeVar("T")  # Domain
+T = TypeVar("T")
 ID = TypeVar("ID", bound=int)
 
 

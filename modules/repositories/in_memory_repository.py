@@ -9,7 +9,7 @@ from libs.log.base_logger import ILogger
 from libs.log.file_logger import FileLogger
 from modules.repositories.abstract_repository import IRepository, PaginatedResult
 
-T = TypeVar("T", bound=BaseModel)  # Domain type must be a Pydantic model
+T = TypeVar("T", bound=BaseModel)
 ID = TypeVar("ID", bound=int)
 
 

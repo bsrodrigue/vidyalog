@@ -13,6 +13,12 @@ from smolorm.expressions import Expr
 class ORM:
     """
     Basic ORM State Machine for SmolORM
+
+    Example:
+    ORM.from_("table").select("col1", "col2").where(col("col1") == "val1").run()
+
+    Also supports:
+    limit, offset, order_by
     """
 
     def __init__(self):
@@ -89,6 +95,11 @@ class ORM:
         return self
 
     def offset(self, n: int):
+        if (
+            self._lastopflag != "LIMIT"
+        ):  # SQLite does not allow offset without a limit clause
+            self._sql += " LIMIT -1"
+
         self._lastopflag = "OFFSET"
         self._sql += f" OFFSET {n}"
         return self
