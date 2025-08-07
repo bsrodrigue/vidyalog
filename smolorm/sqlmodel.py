@@ -3,31 +3,51 @@ import json
 from collections import OrderedDict
 from abc import ABC
 from enum import Enum
-from typing import Union
+from typing import Optional, Union
 from sqlalchemy import text
 from smolorm.connection import engine
 from smolorm.expressions import col
 from smolorm.orm import ORM
 
 
-class SmolType(Enum):
-    NONE = "NONE"
-    TEXT = "TEXT"
-    INT = "INT"
-    REAL = "REAL"
-    DATE = "DATE"
-
-
 class SmolField(ABC):
-    def __init__(self, required: bool = False):
-        self.type: SmolType = SmolType.NONE
-        self.required = required
+    pass
 
 
 class TextField(SmolField):
-    def __init__(self, required: bool = False):
-        super().__init__(required)
-        self.type = SmolType.TEXT
+    def __init__(self, default_value: Optional[str] = None, required: bool = False):
+        self.required = required
+        if self.required and default_value is None:
+            raise SmolORMException("Field is required")
+
+        self.default_value = default_value
+
+
+class IntField(SmolField):
+    def __init__(self, default_value: Optional[int] = None, required: bool = False):
+        self.required = required
+        if self.required and default_value is None:
+            raise SmolORMException("Field is required")
+        self.default_value = default_value
+
+
+class RealField(SmolField):
+    def __init__(self, default_value: Optional[float] = None, required: bool = False):
+        self.required = required
+        if self.required and default_value is None:
+            raise SmolORMException("Field is required")
+        self.default_value = default_value
+
+
+class DatetimeField(SmolField):
+    def __init__(
+        self, default_value: Optional[datetime] = None, required: bool = False
+    ):
+        self.required = required
+        if self.required and default_value is None:
+            raise SmolORMException("Field is required")
+
+        self.default_value = default_value
 
 
 class SmolORMException(Exception):
@@ -40,29 +60,35 @@ class SmolORMException(Exception):
 class SqlModel(ABC):
     table_name: str = ""
 
+    created_at: DatetimeField = DatetimeField(
+        default_value=datetime.now(), required=True
+    )
+    updated_at: DatetimeField = DatetimeField(
+        default_value=datetime.now(), required=True
+    )
+
+    deleted_at: DatetimeField = DatetimeField()
+
     @staticmethod
-    def _get_coldefs(_cls) -> OrderedDict:
+    def _get_coldefs(_cls) -> OrderedDict[str, SmolField]:
         columns = OrderedDict()
         for key, val in _cls.__dict__.items():
-            if (
-                key.startswith("_")
-                or key.endswith("_")
-                or callable(val)
-                or isinstance(val, (staticmethod, classmethod))
-            ):
+            if not isinstance(val, SmolField):
                 continue
-            columns[key] = val
+            columns[str(key)] = val
+
+        if len(columns) == 0:
+            raise SmolORMException("No columns defined")
 
         return columns
 
     def __init_subclass__(cls) -> None:
-        if cls.table_name is None:
-            raise SmolORMException("table_name is None")
+        table_name = cls.table_name
+        if table_name is None:
+            raise SmolORMException("table_name is required")
 
-        connection = engine.connect()
         columns = SqlModel._get_coldefs(cls)
-
-        table_name = columns.pop("table_name")
+        connection = engine.connect()
 
         query_str = f"CREATE TABLE IF NOT EXISTS {table_name} ("
         query_str += "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -71,7 +97,7 @@ class SqlModel(ABC):
         query_str += "deleted_at TEXT, "
         for key, val in columns.items():
             query_str += f"{key} "
-            if isinstance(cls.__dict__[key], str):
+            if isinstance(val, TextField):
                 query_str += "TEXT"
             elif isinstance(cls.__dict__[key], int):
                 query_str += "INT"
