@@ -1,11 +1,10 @@
 from datetime import datetime
-from typing import Optional
 
-from smolorm.sqlmodel import SqlModel
+from smolorm.sqlmodel import DatetimeField, IntField, SqlModel
 
 
 class PlaySessionModel(SqlModel):
     table_name: str = "play_sessions"
-    session_start: datetime = datetime(1, 1, 1)
-    session_end: Optional[datetime] = None
-    backlog_entry: int = 0
+    session_start = DatetimeField(default_value=datetime.now())
+    session_end = DatetimeField(required=False)
+    backlog_entry = IntField(default_value=0)

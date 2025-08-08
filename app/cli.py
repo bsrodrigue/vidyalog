@@ -5,52 +5,12 @@ from prompt_toolkit.shortcuts import confirm, prompt
 from prompt_toolkit.formatted_text import HTML
 from typing import Optional
 
-
 from libs.fmt.datetime_formatter import DateTimeFormatter
 from libs.fmt.status_priority import StatusPriorityFormatter
-from modules.play_session.models import PlaySession
-from modules.play_session.sqlmodels import PlaySessionModel
-from modules.play_session.services import (
-    PlaySessionError,
-    PlaySessionService,
-)
-from modules.backlog.services import GameBacklogService
-from modules.repositories.in_memory_repository import InMemoryRepository
-from modules.backlog.models import (
-    BacklogPriority,
-    BacklogStatus,
-    GameBacklog,
-    GameBacklogEntry,
-    GameMetadata,
-)
-from modules.backlog.sqlmodels import (
-    GameBacklogEntryModel,
-    GameBacklogModel,
-    GameMetadataModel,
-)
-from modules.repositories.smol_sql_repository import SmolORMRepository
+from app.service import backlog_service, play_session_service
+from modules.enums.enums import BacklogPriority, BacklogStatus
+from modules.play_session.services import PlaySessionError
 
-STORAGE = "smol_orm"
-
-# Initialize repositories and services
-if STORAGE == "smol_orm":
-    backlog_repo = SmolORMRepository(GameBacklogModel, GameBacklog)
-    entry_repo = SmolORMRepository(GameBacklogEntryModel, GameBacklogEntry)
-    metadata_repo = SmolORMRepository(GameMetadataModel, GameMetadata)
-    session_repo = SmolORMRepository(PlaySessionModel, PlaySession)
-else:
-    backlog_repo = InMemoryRepository()
-    entry_repo = InMemoryRepository()
-    metadata_repo = InMemoryRepository()
-    session_repo = InMemoryRepository()
-
-service = GameBacklogService(
-    backlog_repo=backlog_repo,
-    entry_repo=entry_repo,
-    metadata_repo=metadata_repo,
-)
-
-play_session_service = PlaySessionService(session_repo)
 
 # Enhanced command structure with aliases and descriptions
 COMMANDS = {
@@ -247,18 +207,18 @@ def handle_command(command: str):
             if not title.strip():
                 print("❌ Title cannot be empty")
                 return
-            backlog = service.create_backlog(title)
+            backlog = backlog_service.create_backlog(title)
             print(f"✅ Created backlog: {backlog.id} - {backlog.title}")
 
         elif main_cmd == "list-backlogs":
-            backlogs = service.list_all_backlogs()
+            backlogs = backlog_service.list_all_backlogs()
             if not backlogs:
                 print("📝 No backlogs found. Create one with 'new <title>'")
                 return
 
             print(f"\n📋 Your Backlogs ({len(backlogs)}):")
             for b in backlogs:
-                entry_count = len(service.list_entries_in_backlog(b.id))
+                entry_count = len(backlog_service.list_entries_in_backlog(b.id))
                 print(f"  {b.id}: {b.title} ({entry_count} games)")
 
         elif main_cmd == "show-backlog":
@@ -266,11 +226,11 @@ def handle_command(command: str):
                 print(f"Usage: {main_cmd} <backlog_id_or_name>")
                 return
 
-            backlog = service.get_backlog_by_fuzzy_match(args[0])
+            backlog = backlog_service.get_backlog_by_fuzzy_match(args[0])
             if not backlog:
                 return
 
-            entries = service.list_entries_in_backlog(backlog.id)
+            entries = backlog_service.list_entries_in_backlog(backlog.id)
             print(f"\n📋 {backlog.title} ({len(entries)} games)")
             print("-" * 50)
 
@@ -281,7 +241,7 @@ def handle_command(command: str):
                 return
 
             for e in entries:
-                md = service.metadata_repo.get_by_id(e.meta_data or 0)
+                md = backlog_service.metadata_repo.get_by_id(e.meta_data or 0)
                 total_time_played = play_session_service.get_max_playtime(e.id)
                 if md:
                     status_str = StatusPriorityFormatter.fmt(e.status, e.priority)
@@ -296,14 +256,14 @@ def handle_command(command: str):
                 print(f"Usage: {main_cmd} <backlog_id_or_name>")
                 return
 
-            backlog = service.get_backlog_by_fuzzy_match(args[0])
+            backlog = backlog_service.get_backlog_by_fuzzy_match(args[0])
             if not backlog:
                 return
 
             if confirm(
                 f"Delete backlog '{backlog.title}'? This will remove all entries."
             ):
-                success = service.delete_backlog(backlog.id)
+                success = backlog_service.delete_backlog(backlog.id)
                 print("✅ Deleted backlog" if success else "❌ Failed to delete")
 
         # Game management
@@ -313,7 +273,7 @@ def handle_command(command: str):
                 print("❌ Title cannot be empty")
                 return
 
-            metadata = service.create_game_metadata(title=title)
+            metadata = backlog_service.create_game_metadata(title=title)
             print(f"✅ Added game: {metadata.id} - {metadata.title}")
 
             # Ask if they want to add more details
@@ -321,7 +281,7 @@ def handle_command(command: str):
                 handle_command(f"edit-game {metadata.id}")
 
         elif main_cmd == "list-games":
-            games = service.list_all_game_metadata()
+            games = backlog_service.list_all_game_metadata()
             if not games:
                 print("🎮 No games found. Add some with 'add-game <title>'")
                 return
@@ -336,7 +296,7 @@ def handle_command(command: str):
                 print(f"Usage: {main_cmd} <game_id_or_name>")
                 return
 
-            game = service.get_game_by_fuzzy_match(args[0])
+            game = backlog_service.get_game_by_fuzzy_match(args[0])
             if not game:
                 return
 
@@ -357,7 +317,7 @@ def handle_command(command: str):
                 print(f"Usage: {main_cmd} <game_id_or_name>")
                 return
 
-            game = service.get_game_by_fuzzy_match(args[0])
+            game = backlog_service.get_game_by_fuzzy_match(args[0])
             if not game:
                 return
 
@@ -378,7 +338,7 @@ def handle_command(command: str):
             except ValueError:
                 completion_time = game.avg_completion_time
 
-            updated = service.update_game_metadata(
+            updated = backlog_service.update_game_metadata(
                 game.id,
                 {
                     "title": title,
@@ -395,12 +355,12 @@ def handle_command(command: str):
                 print(f"Usage: {main_cmd} <game_id_or_name>")
                 return
 
-            game = service.get_game_by_fuzzy_match(args[0])
+            game = backlog_service.get_game_by_fuzzy_match(args[0])
             if not game:
                 return
 
             if confirm(f"Remove game '{game.title}'?"):
-                success = service.delete_game_metadata(game.id)
+                success = backlog_service.delete_game_metadata(game.id)
                 print("✅ Removed game" if success else "❌ Failed to remove")
 
         # Entry management
@@ -410,19 +370,19 @@ def handle_command(command: str):
                 print("Example: add 'Zelda' 'My Backlog'")
                 return
 
-            game = service.get_game_by_fuzzy_match(args[0])
-            backlog = service.get_backlog_by_fuzzy_match(args[1])
+            game = backlog_service.get_game_by_fuzzy_match(args[0])
+            backlog = backlog_service.get_backlog_by_fuzzy_match(args[1])
 
             if not game or not backlog:
                 return
 
-            service.add_game_to_backlog(backlog.id, game.id)
+            backlog_service.add_game_to_backlog(backlog.id, game.id)
             print(f"✅ Added '{game.title}' to '{backlog.title}'")
 
         elif main_cmd == "list-entries":
             if not args:
                 # Show Default Backlog
-                backlogs = service.backlog_repo.list_all()
+                backlogs = backlog_service.backlog_repo.list_all()
                 if len(backlogs) == 0:
                     print("No Backlogs found")
                     return
@@ -431,7 +391,7 @@ def handle_command(command: str):
                     handle_command(f"show-backlog {backlog.id}")
                 return
 
-            backlog = service.get_backlog_by_fuzzy_match(args[0])
+            backlog = backlog_service.get_backlog_by_fuzzy_match(args[0])
             if not backlog:
                 return
 
@@ -447,7 +407,7 @@ def handle_command(command: str):
 
             try:
                 entry = int(args[0])
-                updated = service.update_entry_status(entry, status)
+                updated = backlog_service.update_entry_status(entry, status)
                 print(
                     f"✅ Marked as {raw_status}!" if updated else "❌ Entry not found"
                 )
@@ -474,7 +434,7 @@ def handle_command(command: str):
                     print("❌ Priority must be 1-4")
                     return
 
-                updated = service.update_entry_priority(
+                updated = backlog_service.update_entry_priority(
                     entry, priority_map[priority_num]
                 )
                 print("✅ Priority updated!" if updated else "❌ Entry not found")
@@ -491,7 +451,7 @@ def handle_command(command: str):
             try:
                 entry = args[0]
 
-                entry = service.get_entry_by_fuzzy_match(entry)
+                entry = backlog_service.get_entry_by_fuzzy_match(entry)
 
                 if not entry:
                     print(f"Entry {entry} not found")
@@ -529,10 +489,10 @@ def handle_command(command: str):
 
             print(f"\n📊 Play Sessions ({len(sessions)}):")
             for s in sessions:
-                entry = service.get_entry(s.backlog_entry)
+                entry = backlog_service.get_entry(s.backlog_entry)
                 if not entry:  # Can't we avoid constant checking?
                     return
-                meta_data = service.get_game_metadata(entry.meta_data)
+                meta_data = backlog_service.get_game_metadata(entry.meta_data)
                 if not meta_data:
                     return
                 print(20 * "-")
@@ -545,10 +505,10 @@ def handle_command(command: str):
 
             print("\n📊 Play Statistics:")
             for entry_id, time_played in stats.items():
-                entry = service.get_entry(entry_id)
+                entry = backlog_service.get_entry(entry_id)
                 if not entry:
                     return
-                meta_data = service.get_game_metadata(entry.meta_data)
+                meta_data = backlog_service.get_game_metadata(entry.meta_data)
                 if not meta_data:
                     return
                 print(

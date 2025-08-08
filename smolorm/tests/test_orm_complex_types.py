@@ -2,7 +2,15 @@ from datetime import datetime
 import pytest
 import json
 from smolorm.expressions import col
-from smolorm.sqlmodel import SqlModel
+from smolorm.sqlmodel import (
+    DatetimeField,
+    EnumField,
+    IntField,
+    ListField,
+    RealField,
+    SqlModel,
+    TextField,
+)
 from enum import Enum
 
 
@@ -58,40 +66,40 @@ class Platform(Enum):
 
 class GameMetadataModel(SqlModel):
     table_name: str = "test_game_metadatas"
-    title: str = ""
-    description: str = ""
-    cover_url: str = ""
-    release_date: datetime = datetime(1, 1, 1)
-    developer: str = ""
-    publisher: str = ""
-    avg_completion_time: float = 0
-    genres: list[Genre] = []
-    platforms: list[Platform] = []
+    title = TextField(default_value="")
+    description = TextField(default_value="")
+    cover_url = TextField(default_value="")
+    release_date = DatetimeField(default_value=datetime(1, 1, 1))
+    developer = TextField(default_value="")
+    publisher = TextField(default_value="")
+    avg_completion_time = RealField(default_value=0.0)
+    genres = ListField(default_value=[])
+    platforms = ListField(default_value=[])
 
 
 class GameBacklogEntryModel(SqlModel):
     table_name: str = "test_game_backlog_entries"
-    meta_data: int = 0
-    priority: BacklogPriority = BacklogPriority.P3
-    status: BacklogStatus = BacklogStatus.INBOX
+    meta_data = IntField(default_value=0)
+    priority = EnumField(default_value=BacklogPriority.P3)
+    status = EnumField(default_value=BacklogStatus.INBOX)
 
     # Relations
-    backlog: int = 0  # GameBacklog
+    backlog = IntField(default_value=0)
 
 
 class GameBacklogModel(SqlModel):
     table_name: str = "test_game_backlogs"
-    title: str = ""
+    title = TextField(default_value="")
 
     # Relations
-    entries: list[int] = []
+    entries = ListField(default_value=[])
 
 
 class UserModel(SqlModel):
     table_name: str = "test_users"
-    age: int = 0
-    username: str = "bsrodrigue"
-    password: str = "password"
+    age = IntField(default_value=0)
+    username = TextField(default_value="")
+    password = TextField(default_value="password")
 
 
 @pytest.fixture(autouse=True)

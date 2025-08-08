@@ -1,13 +1,13 @@
 import pytest
-from smolorm.sqlmodel import SqlModel
+from smolorm.sqlmodel import IntField, SqlModel, TextField
 from smolorm.expressions import col
 
 
 class TestUser(SqlModel):
     table_name = "test_users"
-    age = 0
-    username = "default"
-    password = "default"
+    age = IntField(default_value=0)
+    username = TextField(default_value="anonymous")
+    password = TextField(default_value="password")
 
 
 @pytest.fixture(autouse=True)

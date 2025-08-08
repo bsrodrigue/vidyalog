@@ -1,19 +1,19 @@
 import pytest
-from smolorm.sqlmodel import SqlModel
+from smolorm.sqlmodel import IntField, SqlModel, TextField
 from smolorm.expressions import col
 
 
 class User(SqlModel):
     table_name = "test_users"
-    username: str = "default"
-    age: int = 0
+    username = TextField(default_value="John Doe")
+    age = IntField(default_value=0)
 
 
 class Post(SqlModel):
     table_name = "test_posts"
-    title: str = "untitled"
-    content: str = "empty"
-    user_id: int = 0  # Simulated foreign key
+    title = TextField(default_value="Untitled")
+    content = TextField(default_value="Empty")
+    user_id = IntField(default_value=0)
 
 
 @pytest.fixture(autouse=True)
