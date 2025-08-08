@@ -1,15 +1,19 @@
 from contextlib import contextmanager
 from datetime import datetime
 from enum import Enum
-from functools import reduce
 import json
 from typing import Any, Generic, Optional, TypeVar, cast
 
 from pydantic import BaseModel
 
+from libs.filter.filter_expression_evaluator import FilterExpressionEvaluator
 from libs.log.base_logger import ILogger
 from libs.log.file_logger import FileLogger
-from modules.repositories.abstract_repository import IRepository, PaginatedResult
+from modules.repositories.abstract_repository import (
+    FilterQuery,
+    IRepository,
+    PaginatedResult,
+)
 from smolorm.expressions import col
 from smolorm.sqlmodel import SqlModel
 
@@ -164,27 +168,21 @@ class SmolORMRepository(Generic[ID, T], IRepository[ID, T]):
         )
         return list(result)
 
-    def exists(self, filters: dict[str, Any]) -> bool:
+    def exists(self, filters: list[FilterQuery]) -> bool:
         self._logger.debug(f"Check existence of entities with filters: {filters}")
-        filter_expressions = [(col(key) == val) for key, val in filters.items()]
-
-        if not filter_expressions:
-            return False
-
-        final_expression = reduce(lambda x, y: (x) & (y), filter_expressions)
+        final_expression = FilterExpressionEvaluator.chain_filter_queries_to_sql_query(
+            filters
+        )
 
         result = self._model.select().where(final_expression).limit(1).run()
 
         return len(result) > 0
 
-    def count(self, filters: dict[str, Any]) -> int:
+    def count(self, filters: list[FilterQuery]) -> int:
         self._logger.debug(f"Count entities with filters: {filters}")
-        filter_expressions = [(col(key) == val) for key, val in filters.items()]
-
-        if not filter_expressions:
-            return False
-
-        final_expression = reduce(lambda x, y: (x) & (y), filter_expressions)
+        final_expression = FilterExpressionEvaluator.chain_filter_queries_to_sql_query(
+            filters
+        )
 
         result = self._model.select().where(final_expression).limit(1).run()
 
@@ -192,7 +190,7 @@ class SmolORMRepository(Generic[ID, T], IRepository[ID, T]):
 
     def filter(
         self,
-        filters: dict[str, Any],
+        filters: list[FilterQuery],
         order_by: Optional[str] = None,
         descending: bool = False,
         limit: Optional[int] = None,
@@ -200,12 +198,9 @@ class SmolORMRepository(Generic[ID, T], IRepository[ID, T]):
         cursor: Optional[Any] = None,
         distinct: bool = False,
     ) -> PaginatedResult[T]:
-        filter_expressions = [(col(key) == val) for key, val in filters.items()]
-
-        if not filter_expressions:
-            return PaginatedResult(result=[], total=0, has_next=False, next_cursor=None)
-
-        final_expression = reduce(lambda x, y: (x) & (y), filter_expressions)
+        final_expression = FilterExpressionEvaluator.chain_filter_queries_to_sql_query(
+            filters
+        )
 
         result = self._model.select().where(final_expression).run()
 

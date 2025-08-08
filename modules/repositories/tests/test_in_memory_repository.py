@@ -7,7 +7,11 @@ from modules.repositories.in_memory_repository import (
     InMemoryRepository,
     InMemoryRepositoryValueException,
 )
-from modules.repositories.abstract_repository import PaginatedResult
+from modules.repositories.abstract_repository import (
+    FilterOp,
+    FilterQuery,
+    PaginatedResult,
+)
 
 
 # Dummy Pydantic model for testing
@@ -96,10 +100,10 @@ def test_exists_and_count(repository):
     repository.create(DummyModel(name="foo"))
     repository.create(DummyModel(name="foo"))
     repository.create(DummyModel(name="bar"))
-    assert repository.exists({"name": "foo"})
-    assert not repository.exists({"name": "baz"})
-    assert repository.count({"name": "foo"}) == 2
-    assert repository.count({"name": "baz"}) == 0
+    assert repository.exists([FilterQuery("name", FilterOp.EQ, "foo")])
+    assert not repository.exists([FilterQuery("name", FilterOp.EQ, "baz")])
+    assert repository.count([FilterQuery("name", FilterOp.EQ, "foo")]) == 2
+    assert repository.count([FilterQuery("name", FilterOp.EQ, "baz")]) == 0
 
 
 def test_filter_basic(repository):
@@ -107,7 +111,7 @@ def test_filter_basic(repository):
     repository.create(DummyModel(name="b"))
     repository.create(DummyModel(name="c"))
     result: PaginatedResult[DummyModel] = repository.filter(
-        filters={}, order_by="name", descending=False, limit=2
+        filters=[], order_by="name", descending=False, limit=2
     )
     assert isinstance(result, PaginatedResult)
     assert len(result.result) == 2
@@ -119,10 +123,10 @@ def test_filter_with_cursor_and_offset(repository):
     for n in range(5):
         repository.create(DummyModel(name=chr(65 + n)))  # names: A, B, C, D, E
 
-    first_page = repository.filter(filters={}, order_by="id", descending=False, limit=2)
+    first_page = repository.filter(filters=[], order_by="id", descending=False, limit=2)
     assert len(first_page.result) == 2
     second_page = repository.filter(
-        filters={}, order_by="id", descending=False, limit=2, offset=2
+        filters=[], order_by="id", descending=False, limit=2, offset=2
     )
     assert len(second_page.result) == 2
     assert first_page.next_cursor != second_page.next_cursor

@@ -65,6 +65,18 @@ class Column(Expr):
         )
         return FuncExpr(self.name, "IN", f"({val_str})")
 
+    def not_in_(self, values: list) -> Expr:
+        val_str = ",".join(
+            [f"{v}" if isinstance(v, (int, float)) else f"'{v}'" for v in values]
+        )
+        return FuncExpr(self.name, "NOT IN", f"({val_str})")
+
+    def null_(self) -> Expr:
+        return FuncExpr(self.name, "IS ", "NULL")
+
+    def not_null_(self) -> Expr:
+        return FuncExpr(self.name, "IS NOT ", "NULL")
+
     def to_sql(self):
         return self.name
 

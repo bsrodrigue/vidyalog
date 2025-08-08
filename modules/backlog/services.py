@@ -11,7 +11,12 @@ from modules.backlog.models import (
     Genre,
     Platform,
 )
-from modules.repositories.abstract_repository import IRepository, PaginatedResult
+from modules.repositories.abstract_repository import (
+    FilterOp,
+    FilterQuery,
+    IRepository,
+    PaginatedResult,
+)
 
 
 class GameBacklogService:
@@ -47,7 +52,9 @@ class GameBacklogService:
         return backlog
 
     def search_backlogs(self, query: str) -> PaginatedResult[GameBacklog]:
-        result = self.backlog_repo.filter(filters={"title__icontains": query})
+        result = self.backlog_repo.filter(
+            filters=[FilterQuery("title", FilterOp.ICONTAINS, query)]
+        )
 
         self.logger.info(f"Backlogs found: {result}")
         return result
@@ -163,6 +170,11 @@ class GameBacklogService:
         metadata = self.metadata_repo.get_by_id(metadata_id)
         if not metadata:
             raise ValueError(f"Metadata {metadata_id} not found")
+
+        existing = self.list_entries_in_backlog(backlog_id)
+
+        if any(e.meta_data == metadata_id for e in existing):
+            raise Exception("Entry already exists in backlog")
 
         entry = self.entry_repo.create(
             GameBacklogEntry(

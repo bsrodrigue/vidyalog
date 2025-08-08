@@ -7,7 +7,11 @@ from pydantic import BaseModel
 from libs.filter.filter_expression_evaluator import FilterExpressionEvaluator
 from libs.log.base_logger import ILogger
 from libs.log.file_logger import FileLogger
-from modules.repositories.abstract_repository import IRepository, PaginatedResult
+from modules.repositories.abstract_repository import (
+    FilterQuery,
+    IRepository,
+    PaginatedResult,
+)
 
 T = TypeVar("T", bound=BaseModel)
 ID = TypeVar("ID", bound=int)
@@ -88,20 +92,20 @@ class InMemoryRepository(Generic[ID, T], IRepository[ID, T]):
         self._logger.debug("Get all entities")
         return list(self._store.values())
 
-    def exists(self, filters: dict[str, Any]) -> bool:
+    def exists(self, filters: list[FilterQuery]) -> bool:
         self._logger.debug(f"Check existence of entities with filters: {filters}")
         return any(self._match_filters(e, filters) for e in self._store.values())
 
-    def count(self, filters: dict[str, Any]) -> int:
+    def count(self, filters: list[FilterQuery]) -> int:
         self._logger.debug(f"Count entities with filters: {filters}")
         return sum(1 for e in self._store.values() if self._match_filters(e, filters))
 
-    def _match_filters(self, entity: T, filters: dict[str, Any]) -> bool:
+    def _match_filters(self, entity: T, filters: list[FilterQuery]) -> bool:
         return FilterExpressionEvaluator.evaluate(entity, filters)
 
     def filter(
         self,
-        filters: dict[str, Any],
+        filters: list[FilterQuery],
         order_by: Optional[str] = None,
         descending: bool = False,
         limit: Optional[int] = None,

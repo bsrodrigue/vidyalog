@@ -5,7 +5,7 @@ from libs.log.base_logger import ILogger
 from libs.log.file_logger import FileLogger
 from modules.exceptions.exceptions import ServiceError
 from modules.play_session.models import PlaySession
-from modules.repositories.abstract_repository import IRepository
+from modules.repositories.abstract_repository import FilterOp, FilterQuery, IRepository
 
 
 class PlaySessionError(ServiceError):
@@ -81,7 +81,7 @@ class PlaySessionService:
 
     def get_all_entry_sessions(self, backlog_entry: int) -> list[PlaySession]:
         result = self.session_repository.filter(
-            filters={"backlog_entry": backlog_entry}
+            filters=[FilterQuery("backlog_entry", FilterOp.EQ, backlog_entry)]
         )
 
         self.logger.debug(f"Get all play sessions for backlog entry {backlog_entry}")
@@ -89,7 +89,7 @@ class PlaySessionService:
 
     def get_max_playtime(self, backlog_entry: int) -> float:
         result = self.session_repository.filter(
-            filters={"backlog_entry": backlog_entry}
+            filters=[FilterQuery("backlog_entry", FilterOp.EQ, backlog_entry)]
         )
 
         sessions = result.result
@@ -105,7 +105,9 @@ class PlaySessionService:
         return sessions
 
     def get_active_sessions(self) -> list[PlaySession]:
-        result = self.session_repository.filter(filters={"session_end": "None"})
+        result = self.session_repository.filter(
+            filters=[FilterQuery("session_end", FilterOp.EQ, None)]
+        )
         return result.result
 
     def get_played_entries(self) -> set[int]:
