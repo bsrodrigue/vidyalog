@@ -11307,3 +11307,10 @@ Time Played: 00:00:00
 [2025-08-08T19:17:07] [GameBacklogService] [INFO] Log file log.txt already exists
 [2025-08-08T19:22:41] [PlaySessionService] [INFO] Log file log.txt already exists
 [2025-08-08T19:22:41] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-08T19:24:20] [PlaySessionService] [DEBUG] Start Play Session for backlog entry: 2
+[2025-08-08T19:38:03] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-08T19:38:03] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-08T19:38:12] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-08T19:38:12] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-08T19:39:40] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-08T19:39:40] [GameBacklogService] [INFO] Log file log.txt already exists

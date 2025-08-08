@@ -23,6 +23,7 @@ class PlaySessionView(Vertical):
                 Button("Start Play Session", id="start-play-session"),
                 Button("Stop Play Session", id="stop-play-session"),
             ),
+            classes="flex-col",
         )
 
     def refresh_data(self):
