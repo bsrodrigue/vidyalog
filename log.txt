@@ -11314,3 +11314,13 @@ Time Played: 00:00:00
 [2025-08-08T19:38:12] [GameBacklogService] [INFO] Log file log.txt already exists
 [2025-08-08T19:39:40] [PlaySessionService] [INFO] Log file log.txt already exists
 [2025-08-08T19:39:40] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-08T19:46:20] [PlaySessionService] [DEBUG] No play session provided, search first active session
+[2025-08-08T19:46:20] [PlaySessionService] [DEBUG] Stop Play Session 7
+[2025-08-08T19:46:29] [PlaySessionService] [DEBUG] No play session provided, search first active session
+[2025-08-08T19:46:29] [PlaySessionError] [INFO] Log file log.txt already exists
+[2025-08-08T19:46:29] [PlaySessionError] [ERROR] No active sessions: []
+[2025-08-12T05:17:33] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-12T05:17:33] [GameBacklogService] [INFO] Log file log.txt already exists
+[2025-08-12T05:17:41] [GameBacklogService] [INFO] All backlogs found: [GameBacklog(id=1, created_at=datetime.datetime(2025, 8, 6, 17, 37, 34, 145159), updated_at=datetime.datetime(2025, 8, 8, 14, 18, 20, 178021), deleted_at=None, title='Souls-Likes', entries=[2, 4]), GameBacklog(id=2, created_at=datetime.datetime(2025, 8, 6, 19, 58, 31, 307372), updated_at=datetime.datetime(2025, 8, 6, 19, 59, 28, 407448), deleted_at=None, title='Cozy Games', entries=[3])]
+[2025-08-26T05:23:19] [PlaySessionService] [INFO] Log file log.txt already exists
+[2025-08-26T05:23:19] [GameBacklogService] [INFO] Log file log.txt already exists
